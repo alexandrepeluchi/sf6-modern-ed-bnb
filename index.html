@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ed — Guia BnB Modern | Street Fighter 6</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-primary: #0056a6;
+    --blue-dark: #003d7a;
+    --blue-light: #1e7cc4;
+    --purple: #7c3aed;
+    --dark-purple: #5b21b6;
+    --purple-light: #a78bfa;
+    --red: #ff3333;
+    --red-dark: #cc0000;
+    --red-light: #ff6666;
+    --bg: #0a0a10;
+    --surface: #110f1a;
+    --surface2: #18151f;
+    --border: #2a1f3e;
+    --text: #e8e0f0;
+    --muted: #8a7aaa;
+    --accent: #ff6666;
+    --green: #22c55e;
+    --modern: #f59e0b;
+    --modern-dark: #b45309;
+    --modern-light: #fcd34d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; line-height: 1.7; font-size: 15px; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 340px;
+    background: linear-gradient(135deg, #0a0618 0%, #100a05 55%);
+    display: flex; align-items: center;
+    padding: 48px 40px 36px;
+    border-bottom: 2px solid var(--red-dark);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 90% at 75% 55%, rgba(0,86,166,0.15) 0%, transparent 68%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.015) 40px);
+  }
+  .hero-content { position: relative; z-index: 2; flex: 1; }
+  .hero-image { position: absolute; right: 0; top: -60px; z-index: 1; width: 680px; height: 680px; overflow: hidden; pointer-events: none; }
+  .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: right top; filter: drop-shadow(0 0 30px rgba(0,86,166,0.35)); opacity: 0.9; }
+  .hero-eyebrow { font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--blue-light); text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .hero-eyebrow::before { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--blue-primary); }
+  .hero h1 { font-family: 'Black Han Sans', sans-serif; font-size: clamp(52px, 9vw, 100px); line-height: 0.85; color: #fff; letter-spacing: -3px; }
+  .hero h1 em { color: var(--red-light); font-style: normal; display: block; font-size: 0.33em; margin-top: 10px; letter-spacing: 3px; font-weight: 400; }
+  .hero-desc { font-size: 13px; color: var(--muted); letter-spacing: 1px; margin-top: 20px; max-width: 440px; line-height: 1.8; }
+  .hero-tags { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+  .pill { display: inline-block; font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 2px; padding: 4px 12px; border-radius: 2px; text-transform: uppercase; }
+  .pill-gold { background: rgba(255,51,51,0.12); color: var(--red-light); border: 1px solid var(--red-dark); }
+  .pill-red { background: rgba(255,51,51,0.12); color: var(--red-light); border: 1px solid var(--red-dark); }
+  .pill-blue { background: rgba(0,86,166,0.15); color: var(--blue-light); border: 1px solid var(--blue-dark); }
+  .pill-purple { background: rgba(124,58,237,0.15); color: var(--purple-light); border: 1px solid var(--purple); }
+
+  /* MODERN BADGE */
+  .modern-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(93,33,182,0.15)); border: 1px solid var(--purple); color: var(--purple-light); font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 2px; padding: 3px 10px; border-radius: 3px; text-transform: uppercase; }
+
+  /* LAYOUT */
+  .wrapper { max-width: 960px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* SECTION */
+  section { margin-top: 64px; }
+  .section-label { font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--blue-light); text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px; }
+  h2 { font-family: 'Black Han Sans', sans-serif; font-size: clamp(22px, 4vw, 36px); color: #fff; line-height: 1; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  h3 { font-family: 'Black Han Sans', sans-serif; font-size: 16px; color: var(--purple-light); margin: 32px 0 14px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  h3::before { content: '▸'; color: var(--red-dark); font-size: 12px; }
+  p { margin-bottom: 13px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* UNAVAILABLE — strike style */
+  .unavailable {
+    position: relative;
+    opacity: 0.45;
+  }
+  .unavailable::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    height: 2px;
+    background: var(--red);
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+  .unavail-row td {
+    opacity: 0.38;
+    position: relative;
+  }
+  .unavail-row td::after {
+    content: '';
+    position: absolute;
+    left: 4px; right: 4px;
+    top: 50%;
+    height: 1.5px;
+    background: rgba(255,60,60,0.7);
+    transform: translateY(-50%);
+  }
+  .unavail-label {
+    display: inline-block;
+    background: rgba(255,51,51,0.12);
+    color: #f87171;
+    border: 1px solid rgba(255,51,51,0.4);
+    border-radius: 3px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 1px 7px;
+    font-family: 'Black Han Sans', sans-serif;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .modern-only-label {
+    display: inline-block;
+    background: rgba(124,58,237,0.15);
+    color: var(--purple-light);
+    border: 1px solid var(--purple);
+    border-radius: 3px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 1px 7px;
+    font-family: 'Black Han Sans', sans-serif;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .auto-label {
+    display: inline-block;
+    background: rgba(124,58,237,0.12);
+    color: #a78bfa;
+    border: 1px solid #6d28d9;
+    border-radius: 3px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 1px 7px;
+    font-family: 'Black Han Sans', sans-serif;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 56px 0; }
+
+  /* ALERT / TIP / WARNING / INFO */
+  .alert-box { background: rgba(124,58,237,0.07); border: 1px solid var(--purple-mid); border-radius: 4px; padding: 20px 24px; margin: 28px 0; }
+  .alert-box h4 { font-family: 'Black Han Sans', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--red); text-transform: uppercase; margin-bottom: 10px; }
+  .alert-box p { font-size: 13px; color: var(--text); margin-bottom: 6px; }
+  .alert-box p:last-child { margin-bottom: 0; }
+  .alert-box strong { color: var(--red-light); }
+  .alert-modern { background: rgba(124,58,237,0.08); border: 1px solid var(--purple); border-radius: 4px; padding: 20px 24px; margin: 28px 0; }
+  .alert-modern h4 { font-family: 'Black Han Sans', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--purple); text-transform: uppercase; margin-bottom: 10px; }
+  .alert-modern p { font-size: 13px; color: var(--text); margin-bottom: 6px; }
+  .alert-modern p:last-child { margin-bottom: 0; }
+  .alert-modern strong { color: var(--purple-light); }
+  .tip { border-left: 3px solid var(--purple); background: rgba(124,58,237,0.05); border-radius: 0 4px 4px 0; padding: 13px 17px; margin: 16px 0; font-size: 13px; }
+  .tip strong { color: var(--purple-light); }
+  .warning { border-left: 3px solid var(--red); background: rgba(255,51,51,0.06); border-radius: 0 4px 4px 0; padding: 13px 17px; margin: 16px 0; font-size: 13px; }
+  .warning strong { color: var(--red); }
+  .info { border-left: 3px solid var(--purple); background: rgba(124,58,237,0.07); border-radius: 0 4px 4px 0; padding: 13px 17px; margin: 16px 0; font-size: 13px; }
+  .info strong { color: var(--purple-light); }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--blue-primary); }
+  .card-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 5px; display: block; }
+  .card-title { font-family: 'Black Han Sans', sans-serif; font-size: 15px; color: #fff; margin-bottom: 7px; }
+  .card p { font-size: 13px; color: var(--muted); }
+
+  /* STAT BARS */
+  .stat-row { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+  .stat-label { min-width: 120px; font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+  .stat-bar { flex: 1; height: 4px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .stat-fill { height: 100%; border-radius: 3px; background: var(--blue-primary); }
+  .stat-fill.danger { background: var(--red); }
+  .stat-fill.dead { background: #2a1f3e; }
+  .stat-fill.purple { background: var(--purple); }
+  .stat-fill.bad { background: #374151; }
+
+  /* TABLES */
+  .table-scroll { width: 100%; overflow-x: auto; border-radius: 4px; }
+  .frame-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; table-layout: fixed; }
+  .frame-table th { background: var(--surface2); color: var(--blue-light); font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 10px 14px; text-align: center; border-bottom: 2px solid var(--blue-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .frame-table th:first-child { text-align: left; width: 25%; white-space: normal; }
+  .frame-table th:nth-child(2) { width: 20%; }
+  .frame-table th:nth-child(3), .frame-table th:nth-child(4), .frame-table th:nth-child(5), .frame-table th:nth-child(6) { width: 10%; }
+  .frame-table th:last-child { width: 10%; }
+  .frame-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; text-align: center; font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+  .frame-table td:first-child { width: 25%; text-align: left; white-space: normal; overflow: visible; text-overflow: clip; }
+  .frame-table td.move-name { text-align: left; color: #fff; font-weight: 700; white-space: normal; overflow: visible; }
+  .frame-table td.move-name small { display: block; color: var(--muted); font-weight: 400; font-size: 12px; margin-top: 3px; white-space: nowrap; }
+  .frame-table tr:hover td { background: var(--surface); }
+  .dmg-badge { display: inline-block; background: rgba(0,102,255,0.10); border: 1px solid rgba(0,102,255,0.35); color: var(--blue-light); font-family: 'Black Han Sans', sans-serif; font-size: 12px; letter-spacing: 1px; padding: 2px 9px; border-radius: 3px; white-space: nowrap; }
+
+  /* PATCH TABLE (texto corrido) */
+  .patch-changes-table th:first-child,
+  .patch-changes-table td:first-child { width: 26%; }
+  .patch-changes-table th:nth-child(2) { width: 74%; }
+  .patch-changes-table td[colspan] {
+    text-align: left;
+    padding: 12px 18px;
+    line-height: 1.85;
+  }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 2px; letter-spacing: 1px; }
+  .badge-plus { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .badge-minus { background: rgba(239,68,68,0.15); color: #ff6666; }
+  .badge-safe { background: rgba(0,102,255,0.2); color: var(--blue-light); }
+  .badge-cancel { background: rgba(124,58,237,0.15); color: #a78bfa; }
+  .frames { color: var(--accent); font-weight: 700; }
+
+  /* INPUT NOTATION */
+  .btn-L { background: #0056a622; color: #1e7cc4; border: 1px solid #003d7a; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-M { background: #ca8a0422; color: #fbbf24; border: 1px solid #a16207; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-H { background: #ff333322; color: #ff6666; border: 1px solid #cc0000; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-SP { background: #ea580c22; color: #fb923c; border: 1px solid #c2410c; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-DR { background: #0056a622; color: #1e7cc4; border: 1px solid #003d7a; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-AUTO { background: #18181b; color: #d4d4d8; border: 1px solid #52525b; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; font-family: 'Noto Sans JP', sans-serif; }
+  .btn-DP { background: #0056a622; color: #1e7cc4; border: 1px solid #003d7a; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-DI { background: #ff339922; color: #ff99cc; border: 1px solid #cc0066; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-gray { background: #3a3a3a; color: #a0a0a0; border: 1px solid #5a5a5a; border-radius: 2px; padding: 0 5px; font-size: 11px; font-weight: 700; }
+  .btn-buttons { display: inline-flex; align-items: center; gap: 4px; vertical-align: -2px; }
+  .btn-1 { color: #d8d0e0; font-size: 14px; }
+  .btn-2 { color: #d8d0e0; font-size: 14px; }
+  .neutral-symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #4a4a4a;
+    color: #fff;
+    border: 2px solid #e5e5e5;
+    font-family: 'Arial Black', Impact, sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+    vertical-align: 0px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
+  }
+  .cancel-xx { display: inline-flex; align-items: center; justify-content: center; background: #050505; color: #fff; border: 1px solid #333; border-radius: 3px; padding: 0 6px; margin: 0 4px; font-family: monospace; font-size: 11px; font-weight: 900; letter-spacing: 1px; line-height: 1.5; text-transform: lowercase; }
+
+  /* MODERN COMMAND NOTATION */
+  .cmd-special { background: rgba(0,86,166,0.15); color: #fbbf24; border: 1px solid #a16207; border-radius: 3px; padding: 1px 8px; font-family: 'Black Han Sans', sans-serif; font-size: 11px; letter-spacing: 1px; white-space: nowrap; }
+  .cmd-auto { background: rgba(124,58,237,0.12); color: #a78bfa; border: 1px solid #6d28d9; border-radius: 3px; padding: 1px 8px; font-family: 'Black Han Sans', sans-serif; font-size: 11px; letter-spacing: 1px; white-space: nowrap; }
+
+  /* COMBOS */
+  .combo-section-header {
+    margin: 28px 0 10px;
+    background: var(--surface2);
+    color: var(--muted);
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 9px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .combo { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+  .combo-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue-light); display: block; margin-bottom: 8px; }
+  .combo-row { display: flex; align-items: center; flex-wrap: nowrap; gap: 12px; }
+  .combo-inputs { font-family: monospace; font-size: 13px; color: #fff; background: rgba(0,0,0,0.4); padding: 7px 12px; border-radius: 3px; flex: 1; min-width: 0; }
+  .combo-dmg-badge { flex-shrink: 0; background: rgba(0,102,255,0.10); border: 1px solid rgba(0,102,255,0.35); color: var(--blue-light); font-family: 'Black Han Sans', sans-serif; font-size: 13px; letter-spacing: 1px; padding: 5px 12px; border-radius: 3px; white-space: nowrap; }
+  .combo-note { color: var(--muted); font-size: 12px; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+  .combo-priority { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 3px; margin-bottom: 8px; }
+  .prio-must { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); color: #fffaf0; border: 1px solid rgba(252,211,77,0.5); box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 4px 12px rgba(180,83,9,0.35); font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+  .prio-good { background: rgba(124,58,237,0.12); color: #a78bfa; border: 1px solid #6d28d9; }
+  .prio-bonus { background: rgba(124,58,237,0.15); color: #ff6666; border: 1px solid #cc0000; }
+
+  /* AUTO COMBO BLOCK */
+  .auto-combo-block { background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(0,0,0,0)); border: 1px solid #6d28d9; border-radius: 6px; padding: 18px 22px; margin: 16px 0; }
+  .auto-combo-block h4 { font-family: 'Black Han Sans', sans-serif; font-size: 12px; letter-spacing: 3px; color: #a78bfa; text-transform: uppercase; margin-bottom: 12px; }
+
+  /* FLICKER GRID */
+  .flicker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  .flicker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px; text-align: center; transition: border-color 0.2s; }
+  .flicker-card:hover { border-color: var(--blue-primary); }
+  .flicker-num { font-family: 'Black Han Sans', sans-serif; font-size: 30px; margin-bottom: 6px; }
+  .flicker-num.L { color: #1e7cc4; }
+  .flicker-num.M { color: #ffaa33; }
+  .flicker-num.H { color: #ff6666; }
+  .flicker-name { font-family: 'Black Han Sans', sans-serif; font-size: 13px; color: #fff; margin-bottom: 6px; }
+  .flicker-data { font-size: 11px; color: var(--muted); font-family: monospace; margin-bottom: 10px; display: block; line-height: 1.8; }
+  .flicker-card p { font-size: 12px; color: var(--muted); text-align: left; }
+
+  /* MODERN COMMAND SHORTCUTS TABLE */
+  .shortcut-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+  .shortcut-table th { background: rgba(124,58,237,0.12); color: var(--purple-light); font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 2px; padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--purple); }
+  .shortcut-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 13px; }
+  .shortcut-table tr:hover td { background: var(--surface); }
+
+  /* STEPS / PROGRESS */
+  .steps { display: flex; flex-direction: column; gap: 4px; margin-top: 18px; }
+  .step { display: flex; gap: 18px; align-items: flex-start; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
+  .step-num { font-family: 'Black Han Sans', sans-serif; font-size: 28px; color: var(--border); line-height: 1; min-width: 32px; transition: color 0.2s; }
+  .step:hover .step-num { color: var(--blue-primary); }
+  .step-body { flex: 1; }
+  .step-title { font-family: 'Black Han Sans', sans-serif; font-size: 15px; color: #fff; margin-bottom: 5px; }
+  .step-desc { font-size: 13px; color: var(--muted); }
+  .step-desc strong { color: var(--text); }
+
+  /* FOOTER */
+  .footer { margin-top: 56px; padding: 22px 26px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; text-align: center; }
+  .footer-title { font-family: 'Black Han Sans', sans-serif; font-size: 10px; letter-spacing: 4px; color: var(--blue-light); text-transform: uppercase; margin-bottom: 8px; }
+  .footer-sub { color: var(--muted); font-size: 12px; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 28px; }
+    .hero-image { width: 200px; height: 240px; }
+    .wrapper { padding: 0 14px 60px; }
+    .flicker-grid { grid-template-columns: 1fr; }
+    .combo-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Street Fighter 6 · Guia BnB · Controle Modern</div>
+    <h1>ED<em>Psycho Boxer — Modern</em></h1>
+    <p class="hero-desc">Guia completo para dominar o Ed no controle Modern. Comandos adaptados, Auto Combos detalhados, golpes indisponíveis identificados e combos funcionais para Modern.</p>
+    <div class="hero-tags">
+      <span class="pill pill-gold">⚡ Controle Modern</span>
+      <span class="pill pill-red">Patch Y4/S4</span>
+      <span class="pill pill-purple">Bread & Butter</span>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://www.streetfighter.com/6/assets/images/character/ed/ed.png" alt="Ed - Psycho Boxer">
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- MODERN NOTICE -->
+  <div class="alert-modern" style="margin-top:36px;">
+  <h4>⚡ Guia Modern — Como Ler Este Guia</h4>
+
+  <p>Este guia foi feito para o <strong>Controle Modern</strong>. Os specials podem ser executados pelo atalho <span class="btn-SP">SP</span> ou pelo comando manual.</p>
+
+  <p><strong>Notação:</strong> <span class="btn-SP">SP</span> = Atalho de Special · <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span> <span class="btn-M">M</span> <span class="btn-H">H</span> = Auto Combo.</p>
+
+  <p><strong>Dano:</strong> Specials executados com <span class="btn-SP">SP</span> causam <strong>20% menos dano</strong>. Sempre que possível, use o comando manual (↓↘→, ↓↙← ou DP) para remover essa penalidade.</p>
+</div>
+
+  <!-- NOTAÇÃO -->
+<div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Notação usada neste guia<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+<div class="info " style="margin-bottom:0">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,255,255,.12);">
+          <th style="padding:8px 6px;text-align:center;">Botão</th>
+          <th style="padding:8px 6px;text-align:center;">Função</th>
+          <th style="padding:8px 6px;text-align:center;">Direção</th>
+          <th style="padding:8px 6px;text-align:center;">Significado</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td style="padding:8px 6px;text-align:center;vertical-align:middle;"><span class="btn-L">L</span></td>
+          <td style="text-align:center;">Light</td>
+          <td style="text-align:center;"><span class="neutral-symbol">N</span></td>
+          <td style="text-align:center;">Neutro</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-M">M</span></td>
+          <td style="text-align:center;">Medium</td>
+          <td style="text-align:center;">←</td>
+          <td style="text-align:center;">Trás</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-H">H</span></td>
+          <td style="text-align:center;">Heavy</td>
+          <td style="text-align:center;">→</td>
+          <td style="text-align:center;">Frente</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-SP">SP</span></td>
+          <td style="text-align:center;">Special</td>
+          <td style="text-align:center;">↓</td>
+          <td style="text-align:center;">Baixo</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-AUTO">AUTO</span></td>
+          <td style="text-align:center;">Auto Combo</td>
+          <td style="text-align:center;">↑</td>
+          <td style="text-align:center;">Pulo</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-DP">DP</span></td>
+          <td style="text-align:center;">Drive Parry</td>
+          <td style="text-align:center;">↘ ↙ ↖ ↗</td>
+          <td style="text-align:center;">Diagonais</td>
+        </tr>
+
+        <tr>
+          <td style="padding:8px 6px;text-align:center;"><span class="btn-DI">DI</span></td>
+          <td style="text-align:center;">Drive Impact</td>
+          <td style="text-align:center;">QCF / QCB / DP</td>
+          <td style="text-align:center;">Comandos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <!-- 00 YEAR 4 / SEASON 4 PATCH NOTES -->
+  <section id="patch-y4s4">
+    <div class="section-label">Y4/S4</div>
+    <h2>Year 4 / Season 4 — Patch Notes (08.03.2026)</h2>
+    <p>Resumo oficial da Capcom: Ed continua fortissimo no neutral com normals de longo alcance, mas estava com risco baixo demais quando encurralado por causa de ferramentas que viravam o momentum em uma unica interacao. O patch reduz esse "escape de canto" e, em troca, melhora a capacidade dele de avancar pressionando de forma proativa.</p>
+
+    <div class="alert-box">
+      <h4>⚠ O que mudou na pratica</h4>
+      <p><strong>Corner game nerfado:</strong> back throw e situacoes de throw apos <strong>Light/Medium Psycho Flicker (hold) bloqueado</strong> ficaram menos opressivos, pois o pull no block foi reduzido e, em certas distancias, o oponente sai do alcance de throw.</p>
+      <p><strong>Pressao ativa buffada:</strong> <strong>Flicker Combination (LK ▶ LK ▶ LK)</strong> ganhou menos pushback no ultimo hit, melhorando continuidade ofensiva. O <strong>OD Psycho Shoot</strong> agora diferencia melhor versoes: light mais lenta (cobertura para avancar) e heavy mais rapida (pressao e teste de reacao).</p>
+    </div>
+
+    <div class="table-scroll"><table class="frame-table patch-changes-table">
+      <thead>
+        <tr><th>Golpe / Categoria</th><th colspan="5" style="text-align:left;">Detalhes do Ajuste (08.03.2026)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">Rib Crusher<br><small>← + <span class="btn-L">L</span> + <span class="btn-M">M</span></small></td>
+          <td colspan="5" style="text-align:left;">Frames totais: 123f <span class="cancel-xx">→</span> 130f. Vantagem no hit: +24f <span class="cancel-xx">→</span> +17f. Resultado: dash para frente apos hit perde forca; para manter pressao no canto, priorize rotas com Drive Rush.</td>
+        </tr>
+        <tr>
+          <td class="move-name">Flicker Combination<br><small><span class="btn-L">L</span> ▶ <span class="btn-L">L</span> ▶ <span class="btn-L">L</span></small></td>
+          <td colspan="5" style="text-align:left;">Pushback no hit do ultimo ataque foi reduzido. Ed fica mais perto para continuar ofensiva apos confirmar a string.</td>
+        </tr>
+        <tr>
+          <td class="move-name">L / OD Psycho Blitz<br><small>↓↙← + <span class="btn-L">L</span> ou <span class="btn-buttons"><span class="btn-2">●●</span></span></small></td>
+          <td colspan="5" style="text-align:left;">Adicionado <strong>30% de initial scaling</strong>. Combos que entram por essas rotas causam menos dano total do que no patch anterior.</td>
+        </tr>
+        <tr>
+          <td class="move-name">OD Psycho Shoot<br><small><span class="neutral-symbol">N</span> + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>  > → + <span class="btn-L">L</span> ou → + <span class="btn-H">H</span></small></td>
+          <td colspan="5" style="text-align:left;">Velocidade do projetil light diminuida. Velocidade do projetil heavy aumentada. Abre duas camadas de pressao diferentes no neutral.</td>
+        </tr>
+        <tr>
+          <td class="move-name">L / M Psycho Flicker (Hold)<br><small>↓↘→ + Hold <span class="btn-L">L</span> ou Hold <span class="btn-M">M</span></small></td>
+          <td colspan="5" style="text-align:left;">Distancia de puxao no block foi reduzida. Em varios spacings, o oponente bloqueia e fica fora do alcance de throw do Ed.</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <div class="warning">
+      <strong>Impacto no Modern:</strong> Ed ainda domina media distancia, mas agora precisa ser mais criativo no canto depois de Flicker hold bloqueado. Em compensacao, o plano de avancar atras de OD Shoot (light lenta ou heavy rapida) e de manter turno com o 3 hit do Flicker Combination ficou melhor. Atenção: rotas de combo com L/OD Blitz podem render menos dano por causa do novo initial scaling.
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);margin-top:12px;">Fonte oficial Capcom: <a href="https://www.streetfighter.com/6/buckler/en/battle_change/20260803/ed" target="_blank" rel="noopener noreferrer" style="color:var(--blue-light);">Battle Change List — Ed (08.03.2026)</a>.</p>
+  </section>
+
+  <!-- 01 QUEM É ED NO MODERN -->
+  <section id="visao">
+    <div class="section-label">01</div>
+    <h2>Ed no Controle Modern</h2>
+    <p>Ed é um dos melhores personagens para o Modern porque sua perda de golpes importantes é mínima. No Patch S4, Jumping MK foi adicionado de volta. Faltam principalmente <strong>2MK e 2LK</strong> (especiais de baixo). Tudo mais está disponível.</p>
+
+    <div class="card-grid" style="margin-top:20px;">
+      <div class="card">
+        <span class="card-label">Pontos Fortes no Modern</span>
+        <div class="card-title">Por que jogar Modern</div>
+        <p>Psycho Flicker com atalho fácil · Auto Combos excelentes com knockdown garantido · SA3 (Psycho Chamber) disponível · Jumping MK disponível no S4 · Kill Rush para approach · DP anti-aéreo confiável</p>
+      </div>
+      <div class="card">
+        <span class="card-label">O que falta no Modern</span>
+        <div class="card-title">Pontos de Atenção</div>
+        <p>Falta <strong>2MK e 2LK</strong> (versões de baixo dos especiais) · Psycho Flicker via atalho = -20% dano · SA2 mais difícil de usar estrategicamente · Rotas de SA2 avançadas ficam mais limitadas</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Avaliação Modern</span>
+        <div class="card-title">Excelente — Alta Recomendação</div>
+        <p>Ed Modern foi listado como um dos personagens mais bem implementados no controle Modern. Auto Combos com ótimo oki, flicker disponível e mecânicas únicas intactas.</p>
+      </div>
+    </div>
+
+    <h3>Perfil de Dificuldade — Modern</h3>
+    <div class="stat-row"><div class="stat-label">Dano</div><div class="stat-bar"><div class="stat-fill danger" style="width:82%"></div></div></div>
+    <div class="stat-row"><div class="stat-label">Ofensiva</div><div class="stat-bar"><div class="stat-fill" style="width:85%"></div></div></div>
+    <div class="stat-row"><div class="stat-label">Mix-Up</div><div class="stat-bar"><div class="stat-fill" style="width:80%"></div></div></div>
+    <div class="stat-row"><div class="stat-label">Facilidade</div><div class="stat-bar"><div class="stat-fill" style="width:88%"></div></div></div>
+    <div class="stat-row"><div class="stat-label">Alcance</div><div class="stat-bar"><div class="stat-fill" style="width:75%"></div></div></div>
+    <div class="stat-row"><div class="stat-label">Defesa</div><div class="stat-bar"><div class="stat-fill bad" style="width:45%"></div></div></div>
+  </section>
+
+  <!-- 02 NORMAL MOVES -->
+  <section id="normais">
+    <div class="section-label">02</div>
+    <h2>Normal Moves</h2>
+    <p>Ed no Modern mantém quase todos os normals. Jumping MK foi adicionado no Patch S4. A principal perda são as versões de baixo dos especiais (<strong>2MK e 2LK</strong>) abaixo. Os normals com botão único são acessados normalmente.</p>
+
+    <div class="table-scroll"><table class="frame-table">
+      <thead>
+        <tr><th>Golpe</th><th>Input</th><th>Startup</th><th>On Hit</th><th>On Block</th><th>Cancel</th><th>Dano</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">Standing LP</td>
+          <td class="notation"><span class="btn-L">L</span></td>
+          <td class="frames">4</td>
+          <td><span class="badge badge-plus">+4f</span></td>
+          <td><span class="badge badge-minus">-1f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">300</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Standing LK</td>
+          <td class="notation"><span class="btn-L">L</span></td>
+          <td class="frames">6</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-3f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">300</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Standing MP</td>
+          <td class="notation"><span class="btn-M">M</span></td>
+          <td class="frames">7</td>
+          <td><span class="badge badge-plus">+6f</span></td>
+          <td><span class="badge badge-minus">-1f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">600</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Standing MK</td>
+          <td class="notation"><span class="btn-M">M</span></td>
+          <td class="frames">10</td>
+          <td><span class="badge badge-safe">0f</span></td>
+          <td><span class="badge badge-minus">-5f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">600</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Standing HP</td>
+          <td class="notation"><span class="btn-H">H</span></td>
+          <td class="frames">10</td>
+          <td><span class="badge badge-plus">+5f</span></td>
+          <td><span class="badge badge-minus">-2f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Standing HK</td>
+          <td class="notation"><span class="btn-H">H</span></td>
+          <td class="frames">10</td>
+          <td><span class="badge badge-plus">+8f</span></td>
+          <td><span class="badge badge-plus">+4f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Crouching LP</td>
+          <td class="notation">↓ + <span class="btn-L">L</span></td>
+          <td class="frames">4</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-3f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">200</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Crouching MP</td>
+          <td class="notation">↓ + <span class="btn-M">M</span></td>
+          <td class="frames">8</td>
+          <td><span class="badge badge-plus">+2f</span></td>
+          <td><span class="badge badge-minus">-6f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">500</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Crouching HP</td>
+          <td class="notation">↓ + <span class="btn-H">H</span></td>
+          <td class="frames">10</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-minus">-12f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">900</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Crouching HK</td>
+          <td class="notation">↓ + <span class="btn-H">H</span></td>
+          <td class="frames">12</td>
+          <td><span class="badge badge-minus">-1f</span></td>
+          <td><span class="badge badge-minus">-6f</span></td>
+          <td><span class="badge badge-cancel">C</span></td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping LP</td>
+          <td class="notation"><span class="btn-L">L</span></td>
+          <td class="frames">5</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">300</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping LK</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span></td>
+          <td class="frames">8</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">300</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping MP</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M</span></td>
+          <td class="frames">8</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">500</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping MK</td>
+          <td class="notation"><span class="btn-M">M</span></td>
+          <td class="frames">10</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">700</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping HP</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span></td>
+          <td class="frames">9</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Jumping HK</td>
+          <td class="notation"><span class="btn-H">H</span></td>
+          <td class="frames">8</td>
+          <td>—</td><td>—</td><td>—</td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+
+  </section>
+
+  <!-- 03 UNIQUE ATTACKS -->
+  <section id="uniques">
+    <div class="section-label">03</div>
+    <h2>Unique Attacks</h2>
+    <p>Ataques exclusivos de Ed. As Combinations são executadas em sequência de botões.</p>
+
+    <div class="table-scroll"><table class="frame-table">
+      <thead>
+        <tr><th>Golpe</th><th>Input</th><th>Startup</th><th>On Hit</th><th>On Block</th><th>Cancel</th><th>Dano</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">Psycho Knuckle Lv1</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + Hold <span class="btn-H">H</span></td>
+          <td class="frames">35</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td>*-2</td>
+          <td>—</td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Psycho Knuckle Lv2</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + Hold <span class="btn-H">H</span></td>
+          <td class="frames">65</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-plus">+4f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">1200</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Cobra Punch</td>
+          <td class="notation">→ + <span class="btn-H">H</span></td>
+          <td class="frames">17</td>
+          <td><span class="badge badge-plus">+1f</span></td>
+          <td><span class="badge badge-minus">-3f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">500</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Low Hook Punch</td>
+          <td class="notation">↘ + <span class="btn-H">H</span></td>
+          <td class="frames">10</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-minus">-12f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">900</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Flicker Combination (2°)</td>
+          <td class="notation"><span class="btn-L">L</span> ▶ <span class="btn-L">L</span></td>
+          <td class="frames">7</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-3f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">400</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Flicker Combination (3°)</td>
+          <td class="notation"><span class="btn-L">L</span> ▶ <span class="btn-L">L</span> ▶ <span class="btn-L">L</span></td>
+          <td class="frames">7</td>
+          <td><span class="badge badge-plus">+1f</span></td>
+          <td><span class="badge badge-minus">-4f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">600</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Body Blow Combination</td>
+          <td class="notation"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M</span> ▶ <span class="btn-M">M</span></td>
+          <td class="frames">13</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-minus">-8f</span></td>
+          <td><span class="badge badge-cancel">C*</span></td>
+          <td><span class="dmg-badge">400</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Hitman Combination (2°)</td>
+          <td class="notation"><span class="btn-M">M</span> ▶ <span class="btn-M">M</span></td>
+          <td class="frames">7</td>
+          <td><span class="badge badge-plus">+6f</span></td>
+          <td><span class="badge badge-minus">-8f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">300</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Hitman Combination (3°)</td>
+          <td class="notation"><span class="btn-M">M</span> ▶ <span class="btn-M">M</span> ▶ <span class="btn-M">M</span></td>
+          <td class="frames">11</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-minus">-11f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">600</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">Low Smash Combination</td>
+          <td class="notation">↓ + <span class="btn-H">H</span> ▶ <span class="btn-H">H</span></td>
+          <td class="frames">10</td>
+          <td style="color:var(--muted);">Knockdown</td>
+          <td><span class="badge badge-minus">-8f</span></td>
+          <td><span class="badge badge-cancel">SA</span></td>
+          <td><span class="dmg-badge">700</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <div class="tip">
+      <strong>Cobra Punch (→+<span class="btn-H">H</span>):</strong> Invencibilidade nos pés entre frames 7–19. Passa por sweeps e lows. Startup 17f, <span style="color:#22c55e">+1f</span> no hit, <span style="color:#ff6666">-3f</span> no block. 
+      <br><strong>Low Hook Punch (↘+<span class="btn-H">H</span>):</strong> Low que derruba, 10f startup, <span style="color:#ff6666">-12f</span> no block — use como armadilha de punish próximo.
+    </div>
+  </section>
+
+  <!-- 04 SPECIALS — MODERN -->
+  <section id="specials">
+    <div class="section-label">04</div>
+    <h2>Specials no Controle Modern</h2>
+    <p>Os specials de Ed no Modern usam o botão <span class="btn-SP">SP</span> como atalho. A maioria também pode ser inputada manualmente para <strong>remover a penalidade de -20% de dano</strong>.</p>
+
+    <!-- SHORTCUT TABLE -->
+    <div style="background:rgba(124,58,237,0.06);border:1px solid var(--purple);border-radius:6px;padding:18px 22px;margin-bottom:24px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:4px;color:var(--blue-light);text-transform:uppercase;margin-bottom:14px;">Atalhos de Special — Modern</div>
+      <table class="shortcut-table">
+        <thead><tr><th>Botão / Atalho</th><th>Special</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span></td>
+            <td>L Psycho Spark (Fireball)</td>
+            <td style="color:var(--muted);font-size:12px;">Somente atalho disponível — sem input manual no Modern. Penalidade -20% sempre</td>
+          </tr>
+          <tr>
+            <td>→ + <span class="btn-SP">SP</span></td>
+            <td>L Psycho Uppercut (DP)</td>
+            <td style="color:var(--muted);font-size:12px;">Anti-aéreo principal. Input manual (→↓↘ + LP) remove penalidade</td>
+          </tr>
+          <tr>
+            <td>← + <span class="btn-SP">SP</span></td>
+            <td>L Psycho Blitz</td>
+            <td style="color:var(--muted);font-size:12px;"><span style="color:#22c55e">+3f</span> no hit. Input manual (↓↙← + LP) remove penalidade</td>
+          </tr>
+          <tr>
+            <td>↓ + <span class="btn-SP">SP</span></td>
+            <td>L Psycho Flicker</td>
+            <td style="color:var(--muted);font-size:12px;">Controle de espaço curto. Input manual (↓↘→ + LK) remove penalidade</td>
+          </tr>
+          <tr>
+            <td>→ + <span class="btn-buttons"><span class="btn-2">●●</span></span></td>
+            <td>Kill Rush (Forward)</td>
+            <td style="color:var(--muted);font-size:12px;">Dash ofensivo. Sem penalidade. Seguido de LK ou MK para follow-up</td>
+          </tr>
+          <tr>
+            <td>← + <span class="btn-buttons"><span class="btn-2">●●</span></span></td>
+            <td>Kill Rush (Backward)</td>
+            <td style="color:var(--muted);font-size:12px;">Dash defensivo / escape</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Psycho Flicker — O Coração do Jogo</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">No Modern, o atalho dá o L Flicker automaticamente. Para M e H Flicker, é necessário input manual (QCF + MK ou HK). Vale a pena aprender — especialmente o M Flicker para controle de espaço.</p>
+    <div class="flicker-grid">
+      <div class="flicker-card">
+        <div class="flicker-num L">L</div>
+        <div class="flicker-name">L Psycho Flicker</div>
+        <span class="flicker-data">↓ + <span class="btn-SP">SP</span> ou QCF+LK · 16f<br><span style="color:#22c55e">+1f hit</span> · <span style="color:#ff6666">-6f block</span></span>
+        <p>Curto alcance, rápido. Versão mais usada no atalho. Carregado (30f+) lança o oponente. Principal ender de combo. -20% dano no atalho.</p>
+      </div>
+      <div class="flicker-card">
+        <div class="flicker-num M">M</div>
+        <div class="flicker-name">M Psycho Flicker</div>
+        <span class="flicker-data">QCF + MK (manual) · 20f<br><span style="color:#22c55e">+3f hit</span> · <span style="color:#ff6666">-6f block</span></span>
+        <p>Médio alcance. Requer input manual. Carregado causa crumple (45f). Ferramenta de controle de espaço a distâncias médias.</p>
+      </div>
+      <div class="flicker-card">
+        <div class="flicker-num H">H</div>
+        <div class="flicker-name">H Psycho Flicker</div>
+        <span class="flicker-data">QCF + HK (manual) · 17f<br><span style="color:#22c55e">0f hit</span> · <span style="color:#ff6666">-10f block</span></span>
+        <p>Longo alcance. Anti-aéreo de flicker — use quando oponente pular os outros Flickeres. Não use em grounded.</p>
+      </div>
+    </div>
+
+    <div class="info" style="margin-top:16px;">
+      <strong>OD Psycho Flicker (2 barras):</strong> ↓↘→ + <span class="btn-buttons"><span class="btn-2">●●</span></span> · 25f · <span style="color:#22c55e">+4f</span> no hit e no block. Puxa o oponente, slam knockdown aéreo. Cancelável em SA2. Safe sem gastar Drive — use quando precisar garantir a conversão.
+    </div>
+
+    <div class="warning" style="margin-top:12px;">
+      <strong>Patch 08.03.2026:</strong> nas versoes <strong>L/M Psycho Flicker carregadas (hold)</strong>, o pull no block foi reduzido. Entao, em varios spacings, seu throw apos block nao e mais garantido. Priorize frame trap, walk-forward e re-space em vez de throw automatico.
+    </div>
+
+    <h3>Psycho Blitz — Anti-Aéreo e Ender</h3>
+    <div class="table-scroll"><table class="frame-table">
+      <thead>
+        <tr><th>Versão</th><th>Startup</th><th>On Hit</th><th>On Block</th><th>Cancel</th><th>Dano</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">L Psycho Blitz <span class="modern-only-label">Atalho</span><br><small>← + <span class="btn-SP">SP</span> ou ↓↙← + LP</small></td>
+          <td class="frames">11</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-5f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">800</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">M Psycho Blitz<br><small>↓↙← + MP (manual)</small></td>
+          <td class="frames">13</td>
+          <td style="color:var(--muted)">Knockdown</td>
+          <td><span class="badge badge-minus">-12f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">900</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">H Psycho Blitz<br><small>↓↙← + HP</small></td>
+          <td class="frames">15</td>
+          <td style="color:var(--muted)">Knockdown</td>
+          <td><span class="badge badge-minus">-12f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">1100</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">OD Psycho Blitz<br><small>↓↙← + <span class="btn-buttons"><span class="btn-2">●●</span></span> · Principal para SA2</small></td>
+          <td class="frames">13</td>
+          <td style="color:var(--muted)">Knockdown</td>
+          <td><span class="badge badge-minus">-4f</span></td>
+          <td><span class="badge badge-cancel">SA2</span></td>
+          <td><span class="dmg-badge">1400</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <div class="tip">
+      <strong>No Auto Combo H:</strong> O atalho Heavy (segurar H + Especial) ativa o H Psycho Blitz automaticamente no final da sequência. É o ender padrão do Auto Combo Medium/Heavy — gera <span style="color:#22c55e">+42f</span> na oki com safe jump.
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Nota do patch 08.03.2026: <strong>L/OD Psycho Blitz</strong> receberam 30% de initial scaling. Se suas rotas antigas estiverem dando menos dano que no guia antigo, esse e o motivo principal.</p>
+
+    <h3>Psycho Uppercut — DP</h3>
+    <div class="table-scroll"><table class="frame-table">
+      <thead>
+        <tr><th>Versão</th><th>Startup</th><th>On Hit</th><th>On Block</th><th>Cancel</th><th>Dano</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">L Psycho Uppercut <span class="modern-only-label">Atalho</span><br><small>→ + <span class="btn-SP">SP</span> · Anti-aéreo principal</small></td>
+          <td class="frames">10</td>
+          <td style="color:var(--muted);">D</td>
+          <td><span class="badge badge-minus">-13f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">720 / 900*</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">M Psycho Uppercut<br><small>→↓↘ + MP (manual) · Step forward</small></td>
+          <td class="frames">14</td>
+          <td style="color:var(--muted);">D</td>
+          <td><span class="badge badge-minus">-20f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">1000</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">H Psycho Uppercut<br><small>→↓↘ + HP (manual) · Usado em combos</small></td>
+          <td class="frames">16</td>
+          <td style="color:var(--muted);">D</td>
+          <td><span class="badge badge-minus">-21f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">1200</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">OD Psycho Uppercut<br><small>→↓↘ + <span class="btn-buttons"><span class="btn-2">●●</span></span> · Reversal principal</small></td>
+          <td class="frames">13</td>
+          <td style="color:var(--muted);">D</td>
+          <td><span class="badge badge-minus">-28f</span></td>
+          <td>—</td>
+          <td><span class="dmg-badge">1600</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12px;color:var(--muted);margin-top:6px;">* L Uppercut via atalho sofre penalidade de -20% (720 dano). Input manual → 900. Como anti-aéreo reativo, o atalho é aceitável. Em combos, prefira input manual.</p>
+
+    <h3>Psycho Spark — Fireball</h3>
+    <div class="table-scroll"><table class="frame-table">
+      <thead>
+        <tr><th>Versão</th><th>Startup</th><th>On Hit</th><th>On Block</th><th>Cancel</th><th>Dano</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="move-name">Psycho Spark <span class="modern-only-label">Atalho Apenas</span><br><small><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span> · Sem input manual no Modern</small></td>
+          <td class="frames">14</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-5f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">320*</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">OD Psycho Spark<br><small><span class="neutral-symbol">N</span> + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span></span></span></small></td>
+          <td class="frames">14</td>
+          <td style="color:var(--muted)">Knockdown</td>
+          <td><span class="badge badge-minus">-2f</span></td>
+          <td><span class="badge badge-cancel">SA2</span></td>
+          <td><span class="dmg-badge">400</span></td>
+        </tr>
+        <tr>
+          <td class="move-name">L/M/H Psycho Shoot<br><small>(durante Spark) → + <span class="btn-buttons"><span class="btn-1">●</span></span></small></td>
+          <td class="frames">12</td>
+          <td><span class="badge badge-plus">+3f</span></td>
+          <td><span class="badge badge-minus">-8f</span></td>
+          <td><span class="badge badge-cancel">SA3</span></td>
+          <td><span class="dmg-badge">600</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <div class="warning">
+      <strong>Psycho Spark no Modern só funciona via atalho.</strong> Não há input manual disponível — a penalidade de -20% sempre se aplica (320 de dano vs 400 no Clássico). Use principalmente para Oki e pressão de fireball, não como finisher de combo.
+    </div>
+    <div class="tip" style="margin-top:8px;">
+      <strong>Patch 08.03.2026 no OD Shoot:</strong> use <strong>LP follow-up</strong> para projetil mais lento e avancar atras dele como escudo; use <strong>HP follow-up</strong> para projetil mais rapido e pressao imediata.
+    </div>
+
+    <h3>Kill Rush — Approach e Pressão</h3>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-label"><span class="btn-buttons">→ + <span class="btn-2">●●</span></span></span>
+        <div class="card-title">Kill Rush Forward</div>
+        <p>Dash de 31f para frente. Aproximação e setup de mixup sem gastar Drive. Use como substituto do Drive Rush no oki após knockdown.</p>
+      </div>
+      <div class="card">
+        <span class="card-label"><span class="btn-buttons">→ + <span class="btn-1">●</span></span> <span class="modern-only-label">ATRASADO</span></span>
+        <div class="card-title">Kill Switch Break</div>
+        <p>Startup 11f · <span style="color:#ff6666">-4f</span> no block. Cancelável em SA3 e Kill Rush. Hit alto. Gera +2000 de Drive Gauge no hit.</p>
+      </div>
+      <div class="card">
+        <span class="card-label"><span class="btn-buttons">→ + <span class="btn-1">●</span></span><span class="modern-only-label">RÁPIDO</span></span>
+        <div class="card-title">Kill Switch Chaser</div>
+        <p>Startup 11f · <span style="color:#ff6666">-6f</span> no block. <strong>Mesmo startup que Break</strong> — hit baixo. O oponente não consegue reagir ao visual. Dilema genuíno.</p>
+      </div>
+    </div>
+    <div class="tip">
+      <strong>Mixup de Kill Rush no Modern:</strong> Após Kill Rush Forward (→ + 2 botões), alterne entre LK (Break, alto) e MK (Chaser, baixo). Mesmo startup dos dois follow-ups — oponente não consegue reagir. Se parar de bloquear, cancele em throw. Não precisa gastar Drive.
+    </div>
+
+    <!-- SUPER ARTS -->
+    <div style="margin-top:40px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.10) 0%,rgba(124,58,237,0.06) 100%);border:1px solid var(--purple);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:var(--purple-light);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Super Arts <span style="flex:1;height:1px;background:var(--purple);opacity:0.3;display:block;"></span></div>
+      <div class="table-scroll"><table class="frame-table">
+        <thead>
+          <tr><th style="width: 25%;">Super</th><th style="width: 15%;">Startup</th><th style="width: 60%;">Dano / Notas</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="move-name" style="color:#1e7cc4;">SA1 — Psycho Storm<br><small>↓↘→ ↓↘→ + <span class="btn-L">L</span> · Reversal gratuito</small></td>
+            <td class="frames">13</td>
+            <td style="border-color:#1e7cc4;color:#1e7cc4;"><span class="dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2000</span><br><small style="color:var(--muted);display:block;margin-top:6px;text-align:center;">Invencível frames 1–14 · Reversal sem gastar Drive · Econômico</small></td>
+          </tr>
+          <tr>
+            <td class="move-name" style="color:#1e7cc4;">SA2 — Psycho Cannon<br><small>↓↙← ↓↙← + <span class="btn-M">M</span> · Projétil especial</small></td>
+            <td class="frames">8</td>
+            <td style="border-color:#1e7cc4;color:#1e7cc4;"><span class="dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1100</span><br><small style="color:var(--muted);display:block;margin-top:6px;text-align:center;"><span style="color:#22c55e;font-weight:700;">+65f on block</span> — pressão absurda · Cancelável via OD Blitz · Level 2 avançado</small></td>
+          </tr>
+          <tr style="background:rgba(124,58,237,0.09);border-left:3px solid rgba(124,58,237,0.5);">
+            <td class="move-name" style="color:#a78bfa;border-left:3px solid rgba(124,58,237,0.5);">SA3 — Psycho Chamber ★<br><small>↓↘→ ↓↘→ + <span class="btn-H">H</span> · Super principal</small></td>
+            <td class="frames">10</td>
+            <td><span class="dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;font-size:14px;padding:4px 12px;">4000</span><br><small style="color:var(--muted);display:block;margin-top:6px;text-align:center;">Cancela de L e M Flicker · Immediate Scaling 10% · Main finisher</small></td>
+          </tr>
+          <tr style="background:rgba(255,51,51,0.09);border-left:3px solid var(--red);">
+            <td class="move-name" style="color:var(--accent);border-left:3px solid var(--red);">CA — Psycho Chamber<br><small>↓↘→ ↓↘→ + <span class="btn-H">H</span> (com vida baixa)</small></td>
+            <td class="frames">10</td>
+            <td><span class="dmg-badge" style="border-color:rgba(255,51,51,0.6);color:var(--red-light);font-size:14px;padding:4px 12px;">4500</span><br><small style="color:var(--muted);display:block;margin-top:6px;text-align:center;">Ativa automaticamente com vida baixa · +500 vs SA3</small></td>
+          </tr>
+        </tbody>
+      </table></div>
+      <div class="tip" style="margin-top:14px;">
+        <strong>SA3 é o seu Super principal no Modern.</strong> 4000 de dano com scaling mínimo garantido. Cancele direto de L ou M Psycho Flicker. No Modern sem Level 2 avançado, conserve SA3 para situações que garantem hit — não mash às cegas.
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 AUTO COMBOS -->
+  <!-- 06 BOTÕES CHAVE -->
+  <section id="botoes">
+    <div class="section-label">06</div>
+    <h2>Botões Chave — Modern</h2>
+    <p>Ed no Modern usa os mesmos botões fortes do Clássico. A principal diferença é o acesso via Auto Combo em vez de inputs individuais.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-label">Jab — 4f</span>
+        <div class="card-title"><span style="color:#1e7cc4">Auto + L</span> · <span style="color:#22c55e;">+4f / +3f</span></div>
+        <p>4f de startup, cancelável. Acessado após 2LP no contexto do Auto L. Use em scrambles e confirmações rápidas de mash. O ponto de entrada mais seguro.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Poke Principal — 7f</span>
+        <div class="card-title"><span style="color:#fbbf24">Auto + M</span> · <span style="color:#22c55e;">+6f on hit</span></div>
+        <p>O melhor botão de Ed. Acessado pelo 1° hit do Auto M. Cancela em specials. Confirma em L Flicker → SA3. Frame trap com L Flicker — quase 1 barra de Drive. Memorize esse primeiro.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Neutral — 10f</span>
+        <div class="card-title"><span style="color:#ff6666">Auto + H</span> · <span style="color:#22c55e;">+5f</span> / <span style="color:#ff6666;">-2f block</span></div>
+        <p>Alcance maior que 2MK. Excelente para neutral. Cancelável em L Flicker para chip na Drive Gauge ou OD Flicker para combo. Cancele em SA3 no hit para dano.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Whiff Punish — 10f</span>
+        <div class="card-title"><span style="color:#ff6666">H</span> · <span style="color:#22c55e;">+8f / +4f block</span></div>
+        <p>Grande alcance, cancelável, <span style="color:#22c55e">+8f</span> no hit. Excelente para punir whiffs à distância. <span style="color:#22c55e">+4f</span> no block — ainda é o turno de Ed mesmo bloqueado. Cancela em specials no hit.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Anti-Aéreo — 10f</span>
+        <div class="card-title"><span style="color:#1e7cc4">L - Psycho Uppercut</span> <span class="cmd-special" style="color:#fbbf24">↓ + SP</span></div>
+        <p>Principal anti-aéreo. Use ↓ + Especial para o atalho — ativo para saltos próximos e à frente. Para alcance médio, input manual M Uppercut. Para combos, H Uppercut.</p>
+      </div>
+      <div class="card">
+        <span class="card-label">Low Poke — 9f</span>
+        <div class="card-title"><span style="color:#fbbf24">↓ + M</span> · <span style="color:#22c55e;">+2f on hit</span></div>
+        <p>Low cancelável com <span style="color:#22c55e">+8f</span> no hit. Permite confirmar em M Flicker. Após o patch S2, hit/block ligeiramente piorou — leia o oponente antes de spammar. Ainda excelente ferramenta de confirmação. É o chute médio Drive Rush do Ed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="Basics">
+    <div class="section-label">07</div>
+    <h2>Basics</h2>
+    <p>Antes de aprender os combos, domine as ferramentas fundamentais do Ed. Esta seção reúne os principais pokes, opções de anti-aéreo, controle de espaço, pressão e situações de oki que formam a base do personagem em Modern.</p>
+    <p>O plano de jogo do Ed gira em torno de controlar a média distância com bons normals, punir saltos com anti-aéreos consistentes e manter a pressão após knockdowns. Entender quando disputar espaço, recuar ou continuar a ofensiva é mais importante do que memorizar combos.</p>
+
+    <!-- SUB: TARGET COMBO -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Target Combo<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <div class="combo">
+        <span class="combo-priority prio-good">✔ Bom Saber</span>
+        <span class="combo-tag" style="color:#a78bfa;">Dano Base do Target Combo</span>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-M">M</span>, <span class="btn-M">M</span>, <span class="btn-M">M</span></code>
+          <span class="combo-dmg-badge">1380</span>
+        </div>
+        <div class="combo-note">Dano puro do Target Combo (3 médios), sem enders.</div>
+      </div>
+
+      <div class="combo">
+        <span class="combo-priority prio-good">✔ Bom Saber</span>
+        <span class="combo-tag" style="color:#a78bfa;">Target Combo — Enders</span>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+          <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+            <div style="font-size:11px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;text-align:center;">1200 dano</div>
+            <code class="combo-inputs" style="font-size:10px;">Kill Rush, Throw</code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+            <div style="font-size:11px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;text-align:center;">360 dano</div>
+            <code class="combo-inputs" style="font-size:10px;"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span></code>
+          </div>
+        </div>
+        <div class="combo-note">Dois enders possíveis após o Target Combo: fechar com o agarrão do Kill Rush (1380+1200) ou um ender leve via Auto (1380+360, mais seguro).</div>
+      </div>
+
+      <div class="combo">
+        <span class="combo-priority prio-good">✔ Bom Saber</span>
+        <span class="combo-tag" style="color:#a78bfa;">Flicker Combination (3°) → Throw</span>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-L">L</span>, <span class="btn-L">L</span>, <span class="btn-L">L</span>, Throw</code>
+          <span class="combo-dmg-badge">1800</span>
+        </div>
+        <div class="combo-note"><strong>Somente em Counter Hit.</strong> Nao use essa rota on block: se o oponente bloquear a string, o throw nao e garantido.</div>
+      </div>
+    </div>
+
+    <!-- PSYCHO SPARK -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Psycho Spark / Shooter<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+      <div class="combo">
+        <div style="font-size:11px;color:var(--muted);font-weight:bold;margin-bottom:8px;">Moderno — <span style="color:#1e7cc4;">480 dano</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div style="padding:8px 12px;border:1px solid rgba(30,124,196,0.3);border-radius:4px;background:rgba(30,124,196,0.05);">
+            <div style="font-size:8px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;">SLOW</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-SP">SP</span>, → + <span class="btn-L">L</span></code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(251,191,36,0.3);border-radius:4px;background:rgba(251,191,36,0.05);">
+            <div style="font-size:8px;color:#fbbf24;font-weight:bold;margin-bottom:6px;">MID</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-SP">SP</span>, → + <span class="btn-M">M</span></code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(255,51,51,0.3);border-radius:4px;background:rgba(255,51,51,0.05);">
+            <div style="font-size:8px;color:#ff6666;font-weight:bold;margin-bottom:6px;">FAST</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-SP">SP</span>, → + <span class="btn-H">H</span></code>
+          </div>
+        </div>
+      </div>
+
+      <div class="combo">
+        <div style="font-size:11px;color:var(--muted);font-weight:bold;margin-bottom:8px;">Overdrive — <span style="color:#fbbf24;">640 dano</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div style="padding:8px 12px;border:1px solid rgba(30,124,196,0.3);border-radius:4px;background:rgba(30,124,196,0.05);">
+            <div style="font-size:8px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;">SLOW</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, → + <span class="btn-L">L</span></code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(251,191,36,0.3);border-radius:4px;background:rgba(251,191,36,0.05);">
+            <div style="font-size:8px;color:#fbbf24;font-weight:bold;margin-bottom:6px;">MID</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, → + <span class="btn-M">M</span></code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(255,51,51,0.3);border-radius:4px;background:rgba(255,51,51,0.05);">
+            <div style="font-size:8px;color:#ff6666;font-weight:bold;margin-bottom:6px;">FAST</div>
+            <code class="combo-inputs" style="font-size:10px;text-align:center;display:block;"><span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, → + <span class="btn-H">H</span></code>
+          </div>
+        </div>
+      </div>
+        <div class="combo-note"><strong>Overdrive:</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, → + <span class="btn-H">H</span> (OD) — versão mais rápida com propriedades melhoradas.</div>
+    </div>
+
+    <!-- PSYCHO FLICKER -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Psycho Flicker<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;">
+        <div style="padding:10px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);">
+          <div style="font-size:9px;color:#a78bfa;font-weight:bold;margin-bottom:6px;">Maior range</div>
+          <div style="font-size:11px;font-weight:bold;margin-bottom:6px;">Medium Flicker</div>
+          <div style="font-size:11px;color:var(--muted);">↓↘→ + M. Cuidado com Jump-ins e Drive Impact enquanto carrega.</div>
+        </div>
+        <div style="padding:10px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);">
+          <div style="font-size:9px;color:#a78bfa;font-weight:bold;margin-bottom:6px;">Apenas no ar</div>
+          <div style="font-size:11px;font-weight:bold;margin-bottom:6px;">High Flicker</div>
+          <div style="font-size:11px;color:var(--muted);">↓↘→ + H — só acerta oponentes no ar.</div>
+        </div>
+        <div style="padding:10px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);">
+          <div style="font-size:9px;color:#a78bfa;font-weight:bold;margin-bottom:6px;">Hold</div>
+          <div style="font-size:11px;font-weight:bold;margin-bottom:6px;">Carregar Muda Propriedades</div>
+          <div style="font-size:11px;color:var(--muted);">Segurar qualquer versão do Flicker (L/M/H) muda suas propriedades.</div>
+        </div>
+      </div>
+
+      <!-- Situacional -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">OD Flicker — Puxao Close (Patch Y4/S4)</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+            <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+              <div style="font-size:11px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;text-align:center;">1200 dano</div>
+              <code class="combo-inputs" style="font-size:10px;">↓↘→ + <span class="btn-2">●●</span> (OD), <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span>, Throw</code>
+            </div>
+            <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+              <div style="font-size:11px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;text-align:center;">2440 dano</div>
+              <code class="combo-inputs" style="font-size:10px;">↓↘→ + <span class="btn-2">●●</span> (OD), (walk back) <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+            </div>
+          </div>
+        <div class="combo-note"><span style="color:#ff6666;"><strong>Patch Y4/S4:</strong> o <strong>Medium Flicker carregado (M Hold)</strong> nao puxa mais oponente para close como antes.</span> Agora, quem cria essa situacao de puxao proximo e o <strong>OD Flicker</strong>.
+          <br><br>Depois do puxao close do OD Flicker, Ed fica <span style="color:#22c55e">+4f</span> — a melhor opcao e o jab, porque se o oponente der DI, DP OD ou Super, Ed nao vai tomar. Se puxar e andar para tras, o punish com <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span> fecha em 2440 (sem Level 3).
+          <br><br><strong style="color:#ff6666;">Tech Super importante:</strong> se o oponente estiver em burnout, so e possivel puxar e agarrar logo apos o jab. Se tentar throw direto apos o puxao, ele vai whiffar.
+        </div>
+      </div>
+    </div>
+
+    <!-- POKES -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Pokes<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <div class="warning" style="margin-bottom:16px;">
+        <strong><span class="neutral-symbol">N</span> + <span class="btn-M">M</span> é <span style="color:#ff6666">-5f</span> e ↓ + <span class="btn-H">H</span> é <span style="color:#ff6666">-6f</span> on block.</strong> Espace bem esses golpes para ficar seguro — eles continuam sendo pontos de risco no neutral/corner game mesmo apos as revisoes de Season 3 e do update 08.03.2026.
+      </div>
+
+      <!-- 1º Poke -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Pokes Canceláveis</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px;">
+          <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+            <code class="combo-inputs" style="font-size:10px;"><span class="btn-M">M</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-SP">SP</span></code>
+          </div>
+          <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+            <code class="combo-inputs" style="font-size:10px;">↓ + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-SP">SP</span></code>
+          </div>
+        </div>
+        <div class="combo-note" style="color:#fbbf24;">Dá para cancelar esses golpes em Special e conectar normalmente. Mas atenção: ficar nessa janela deixa Ed suscetível a tomar Drive Impact — use com <strong>cuidado</strong>, principalmente perto do oponente.</div>
+      </div>
+
+      <!-- 2º Poke -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">SUPER MAN PUNCH — Hop sobre Lows</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> KS Chaser <span class="cancel-xx">xx</span> Kill Rush, → + <span class="btn-H">H</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2080</span>
+        </div>
+        <div class="combo-note">→ + <span class="btn-H">H</span> tem alcance longo e é útil para pular sobre os pokes baixos do oponente — Ed fica seguro on block. Como meaty, deixa apenas <span style="color:#ff6666">-1f</span> e dá pra reagir a Drive Impact.</div>
+      </div>
+
+      <!-- 3º Poke -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Drive Rush Poke → Kill Switch Break</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-DR">DR</span>, <span class="btn-M">M</span> <span class="cancel-xx">xx</span> KS Break, ↓↙← + <span class="btn-H">H</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2246</span>
+        </div>
+        <div class="combo-note">Conversão de Drive Rush a partir de um poke confirmado, fechando em Kill Switch Break.</div>
+      </div>
+
+      <!-- 4º Poke -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">SUPER MAN PUNCH → Kill Switch Chaser → Conversão Completa</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> KS Chaser <span class="cancel-xx">xx</span> Kill Rush, → + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> <span class="btn-L">L (2x)</span> <span class="cancel-xx">xx</span> ← + <span class="btn-SP">SP</span> <span class="cancel-xx">xx</span> SA2</code>
+          <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.6);color:#ff6666;">5308</span>
+        </div>
+        <div class="combo-note">Extensão completa da linha de → + <span class="btn-H">H</span> meaty → Kill Switch Chaser, maximizando dano com enders em Blitz e cancelando no Super Level 2.</div>
+      </div>
+    </div>
+
+    <!-- ANTI AIR -->
+
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Anti-Air<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <!-- Obrigatório — 3 Opções -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Anti-Air — Opções</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:8px;">
+          <div>
+            <div style="padding:8px 12px;border:1px solid rgba(30,124,196,0.3);border-radius:4px;background:rgba(30,124,196,0.05);text-align:center;">
+              <div style="font-size:11px;color:#1e7cc4;font-weight:bold;margin-bottom:6px;text-align:center;">864 dano</div>
+              <code class="combo-inputs" style="font-size:10px;">→ + <span class="btn-SP">SP</span></code>
+            </div>
+          </div>
+          <div>
+            <div style="padding:8px 12px;border:1px solid rgba(251,191,36,0.3);border-radius:4px;background:rgba(251,191,36,0.05);text-align:center;">
+              <div style="font-size:11px;color:#fbbf24;font-weight:bold;margin-bottom:6px;text-align:center;">960 dano</div>
+              <code class="combo-inputs" style="font-size:10px;"><span class="neutral-symbol">N</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> Kill Rush</code>
+            </div>
+          </div>
+          <div>
+            <div style="padding:8px 12px;border:1px solid rgba(124,58,237,0.3);border-radius:4px;background:rgba(124,58,237,0.05);text-align:center;">
+              <div style="font-size:11px;color:#a78bfa;font-weight:bold;margin-bottom:6px;text-align:center;">Confirmação</div>
+              <code class="combo-inputs" style="font-size:10px;"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span></code>
+            </div>
+          </div>
+        </div>
+        <div class="combo-note">→ + <span class="btn-SP">SP</span> dá o Uppercut rápido. A rota <span class="btn-H">H</span>, Kill Rush rende mais dano. Em ambos os casos dá pra seguir com <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span> como confirmação rápida.</div>
+      </div>
+
+      <!-- Bom Saber -->
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Anti-Air → Grab Follow-up</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> Kill Rush, Throw</code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2160</span>
+        </div>
+        <div class="combo-note">Depois do anti-air conectar, emendar o follow-up de agarrão do Kill Rush para maximizar o dano total (960 + 1200).</div>
+      </div>
+    </div>
+
+      <!-- SUB: OKI -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">OKI<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Após Assist 1 — Oki</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1170</span>
+          </div>
+          <div class="combo-note">Depois do Assist 1, Ed fica com <span style="color:#22c55e">+39f</span> de vantagem. Use para Drive Rush Throw, Shimmy ou Strike.<br><br><strong>Complemento — meaty com whiff:</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span> (whiff) <span class="cancel-xx">XX</span><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span> — isso é um meaty. Também dá pra ir de ↓+<span class="btn-L">L</span> para Psycho Spark; feito corretamente, fica <strong style="color:#22c55e">+5f on block</strong>.</div>
+        </div>
+        
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Ender Manual ou Modern</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1616</span>
+          </div>
+          <div class="combo-note">Se não quiser gastar Drive no meio da tela, use o ender manual (1770). No Modern, ← + <span class="btn-SP">SP</span> entrega 1616 com safe jump garantido.
+          <br><br><strong>After H Blitz → Kill Rush:</strong> <span style="color:#22c55e">+11f</span> de vantagem — janela para Strike, Throw ou Shimmy.
+          </div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Meaty Spark → Conversão</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L</span> (whiff)<span class="cancel-xx">XX</span><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span> (meaty)<span class="cancel-xx">XX</span><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2434</span>
+          </div>
+          <div class="combo-note">Se o Spark pegar no meaty, converta direto no Auto Pesado completo para esse total.
+            <br><br><strong>Complemento — (whiff) <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> (frame trap):</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span>, <span class="btn-AUTO">AUTO</span> <span class="btn-H">H</span> (whiff) — depois de errar o <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> de propósito, vá para Throw, Strike ou Shimmy. É um frame skip que deixa Ed <strong style="color:#22c55e">+8f</strong>.
+            <br><br><strong>Complemento — Spark meaty x whiff:</strong> <span class="btn-AUTO">AUTO</span> +  <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> <span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span> — o Spark pega em meaty e deixa <span style="color:#22c55e">+5f</span>; sem meaty (whiff) deixa <strong style="color:#22c55e">+9f</strong>. Com <span style="color:#22c55e">+9f</span> após errar o Psycho Spark, Ed pode ir de shimmy, Strike ou um delay throw.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Shimmy em Punish Counter</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2440</span>
+          </div>
+          <div class="combo-note">Se o shimmy funcionar depois do Kill Rush, ele pega em Punish Counter — esse é o resultado. Safe Jump também é uma opção viável nessa mesma situação.</div>
+        </div>
+      
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Repetir Kill Rush + AUTO + H</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2540</span>
+          </div>
+          <div class="combo-note">Se pegar o Kill Rush, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span>, dá para repetir a sequência novamente.</div>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:24px;">
+        <strong>Prioridade máxima Modern:</strong> Auto M (2 hits) → H Blitz ender meterless + ↓ + Especial para anti-aéreo + DI → Auto H em wall splat. Esses três elementos sozinhos já colocam o Ed Modern como uma ameaça real em qualquer level.
+      </div>
+  </section>
+
+  <!-- 08 COMBOS BnB MODERN -->
+  <section id="combos">
+    <div class="section-label">08</div>
+    <h2>Combos BnB — Modern</h2>
+    <p>Seção totalmente reconstruída a partir de footage e anotações de alto nível em Modern. Os combos mostram as rotas de cancelamento, enders, frame advantage e situações de oki mais importantes do Ed Modern.</p>
+    <p>Os Auto Combos são o diferencial do Modern Ed. São sequências apertando o mesmo botão repetidamente — o jogo executa os normals e specials automaticamente. Ed tem excelentes Auto Combos com boas opções de oki.</p>
+
+    <!-- AUTO COMBOS 1 -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(0,102,255,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(0,102,255,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:var(--blue-light);text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Auto Combos — Assist 1 (Leves)<span style="flex:1;height:1px;background:rgba(0,102,255,0.25);display:block;"></span></div>
+
+      <!-- 1170 — Azul -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Assist Combo 1 — Base</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1170</span>
+        </div>
+        <div class="combo-note">A base de tudo: <strong>Ed encadeia até 3 leves</strong>. ↓+<span class="btn-L">L</span> NÃO é cancelável em special — para cancelar em Blitz (L/M/OD) é preciso passar por ↓+<span class="btn-L">L</span> → st.<span class="btn-L">L</span> antes do cancel. Startup de 4f — use em scrambles (<span style="color:#22c55e">+3f</span> a <span style="color:#22c55e">+5f</span>). Gera knockdown com bom oki; use Kill Rush → Standing HP como oki padrão.</div>
+      </div>
+
+      <!-- ~1230 — Azul -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Cancelar em Blitz</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs">↓ + <span class="btn-L">L</span>, <span class="neutral-symbol">N</span> + <span class="btn-L">L (2x)</span> <span class="cancel-xx">xx</span> Blitz (L/M/OD)</code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1230</span>
+        </div>
+        <div class="combo-note">↓+<span class="btn-L">L</span> não cancela em special — esse é o caminho correto para confirmar de um low jab em Blitz.</div>
+      </div>
+
+      <!-- 2130 — Azul -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Assist 1 → Extensão Auto Pesado</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span> <span class="cancel-xx">→</span> Kill Rush <span class="cancel-xx">→</span> <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2130</span>
+        </div>
+        <div class="combo-note">Continuação natural do Assist 1 — a cadeia de leves evolui em <span class="btn-M">M</span>/<span class="btn-H">H</span> e finaliza com um ender Auto Pesado extra.</div>
+      </div>
+
+      <!-- 4250 — Vermelho -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Assist 1 → DI → Auto Pesado</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span> <span class="cancel-xx">xx</span> <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> <span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+          <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.6);color:#ff6666;">4250</span>
+        </div>
+        <div class="combo-note">Se o Drive Impact conectar (Punish Counter) após o Assist Combo 1, converta direto no Auto Pesado completo para o maior dano possível.</div>
+      </div>
+
+      <!-- 2370 — Azul -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">Assist 1 → Drive Rush → Throw</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-L">L (3x)</span> <span class="cancel-xx">→</span> <span class="btn-DR">DR</span> → Throw</code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2370</span>
+        </div>
+        <div class="combo-note">Drive Rush para reposicionar e abrir mixup de Throw. Bom uso de barra quando já confirmou a cadeia de leves.</div>
+      </div>
+    </div>
+
+    <!-- AUTO COMBOS 2 -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(251,191,36,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(251,191,36,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#fbbf24;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Auto Combos — Assist 2 (Médios)<span style="flex:1;height:1px;background:rgba(251,191,36,0.25);display:block;"></span></div>
+
+      <!-- 2935 — Roxo -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Assisted Combo 2 — Completo</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (6x)</span></code>
+          <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2935</span>
+        </div>
+        <div class="combo-note">Os primeiros 2 hits (<span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span>) têm ótima utilidade individual — use-os como base para cancelamentos. O combo completo encadeia 6 médios e usa OD Snatcher + H DP como ender automático.<br><br><strong>Importante:</strong> isso <strong>não é o Target Combo</strong> de médios — é o Assisted Combo 2, uma cadeia diferente.</div>
+      </div>
+
+      <!-- 2280 — Roxo -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Assist 2 → Kill Rush → Kill Switch Break</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> Kill Rush <span class="cancel-xx">→</span> KS Break</code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2280</span>
+        </div>
+        <div class="combo-note">Gera safe jump. A rota mais consistente do Assist 2 — pare em 2 médios e cancele em Kill Rush direto para o ender Break.<br><br><strong>⚠ Atenção on block:</strong> soltar a cadeia de <span class="btn-M">M (2x)</span> sem cancelar em nada deixa <strong style="color:#ff6666">-8f</strong> — extremamente punível. Sempre cancele em algo. Se sair o OD Snatcher por acidente, o Kill Rush Break ainda é block string válida.<br><br><strong>Complemento — ender com Spark:</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> <span class="btn-SP">SP</span> deixa <strong style="color:#ff6666">-6f on block</strong> — ainda punível por muitos personagens, mas mais seguro do que soltar a cadeia crua.</div>
+      </div>
+
+       <!-- 1770 — Azul -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Assist 2 → Ender Manual (H Blitz)</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (3x)</span> <span class="cancel-xx">xx</span> ← + <span class="btn-SP">SP</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">1616</span>
+        </div>
+        <div class="combo-note">Ender meterless mais simples — ← + <span class="btn-SP">SP</span> (Modern H Blitz) entrega <strong>1616</strong> com safe jump garantido. Se preferir o manual clássico (↓↙← + <span class="btn-H">H</span>), o dano sobe para <strong>1770</strong>, sem gastar Drive.</div>
+      </div>
+
+      <!-- 2342 — Roxo -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">Assist 2 → Spark → Conversão</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> <span class="btn-SP">SP</span>, ↓ + <span class="btn-M">M</span> <span class="cancel-xx">xx</span> <span class="btn-DR">DR</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2342</span>
+        </div>
+        <div class="combo-note">Se o Spark conectar, emende ↓ + <span class="btn-M">M</span> e, em caso de Punish Counter, converta no Auto Pesado completo para esse total.<br><br><strong>Complemento:</strong><br><strong>&emsp;* Ender com OD Spark:</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span> (OD Spark) deixa apenas <strong style="color:#ff6666">-2f</strong> on block — super seguro, prioridade quando tiver Drive sobrando.<br><strong>&emsp;* Ender com L Flicker:</strong> ↓ + <span class="btn-SP">SP</span> (L Flicker) aumenta o espaçamento — mesmo ficando <strong style="color:#ff6666">-6f</strong>, é difícil de punir a menos que o oponente esteja muito perto.</div>
+      </div>
+    </div>
+
+    <!-- AUTO COMBOS 3 -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(255,102,102,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(255,102,102,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#ff6666;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Auto Combos — Assist 3 (Pesados)<span style="flex:1;height:1px;background:rgba(255,102,102,0.25);display:block;"></span></div>
+
+      <!-- 2280 — Vermelho -->
+      <div style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Assist Combo 3 — Base</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span></code>
+          <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2280</span>
+        </div>
+        <div class="combo-note">Cadeia completa de pesados. Excelente conversão padrão quando não há recursos para gastar.<br><br><strong>Complemento — 3 hits seguro:</strong> <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (3x)</span> (sem Kill Rush) fica seguro on block.<br><strong>Complemento — Wall Splat:</strong> em wall splat de Drive Impact, apenas pressione <span class="btn-H">H (3x)</span> e coleta <strong>~4680</strong> de dano sem gastar nada. O primeiro HP alcança de longe.<br><strong>Complemento — Com Drive Rush Cancel:</strong> <span class="btn-DR">DR</span>, <span class="btn-H">H (2x)</span> <span class="cancel-xx">xx</span> SA3 entrega <strong>~5500</strong> gastando 6 barras — muito simples de executar.</div>
+      </div>
+
+      <!-- 4980 — Vermelho -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Assist 3 → Level 3</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (5x)</span> <span class="cancel-xx">xx</span> SA3</code>
+          <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.6);color:#ff6666;">4980</span>
+        </div>
+        <div class="combo-note">Cash-out máximo em Level 3 saindo direto da cadeia de pesados — ótimo fechamento de round quando a barra está cheia.</div>
+      </div>
+    </div>
+
+      <!-- SUB: COUNTER HIT -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Counter Hit<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Counter Hit — Conversão Completa</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-M">M</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2690</span>
+          </div>
+          <div class="combo-note">Conversão completa de Punish/Counter Hit fechando em Kill Switch Break.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Spark → DP Heavy Manual</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (3x)</span><span class="cancel-xx">xx</span> DP <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2504</span>
+          </div>
+          <div class="combo-note"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (3x)</span> cancelado em DP Heavy manual depois de acertar o Spark.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">No Canto — Jab Abaixado + Spark</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span>, ↓ + <span class="btn-L">L</span><span class="cancel-xx">xx</span><span class="neutral-symbol">N</span> + <span class="btn-SP">SP</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2280</span>
+          </div>
+          <div class="combo-note">Se estiver no canto e deixar o jab abaixado seguido de Spark, fica <span style="color:#22c55e">+8f</span>, pois pega como meaty.</div>
+        </div>
+      </div>
+
+      <!-- SUB: DRIVE IMPACT -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Drive Impact<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+ 
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">DI → Auto Médio</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> <span class="btn-M">M (2x)</span>, <span class="btn-M">M</span> <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2700</span>
+          </div>
+          <div class="combo-note">Precisa estar perto após o DI. Se Ed estiver longe demais, o Standing Medium Punch não conecta — nesse caso use o Assist 3 no lugar.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">DI — Conversão de Canto</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span> (walk forward), <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span>, ↓↘→ + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> KS Chaser <span class="cancel-xx">xx</span> DP <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3120</span>
+          </div>
+          <div class="combo-note">A melhor conversão de DI quando o oponente já está perto do canto.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">DI → Auto Pesado</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> <span class="btn-H">H (3x)</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2680</span>
+          </div>
+          <div class="combo-note">Alternativa simples e consistente quando o Assist 1 não alcança.</div>
+        </div>
+      </div>
+
+      <!-- SUB: WALL SPLASH -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Wall Splash<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+        
+         <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Versão Padrão — Meterless</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span> <span class="cancel-xx">xx</span> SA3</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.5);color:var(--red-light);">4680</span>
+          </div>
+          <div class="combo-note">Apenas pressione <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> 4 vezes após o wall splat — coleta 4680 de dano sem gastar recursos. O primeiro <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> alcança de longe e, se conectar, o restante é garantido.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Wall Splash — Conversão</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> KS Chaser <span class="cancel-xx">xx</span> DP <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2016</span>
+          </div>
+          <div class="combo-note">Rota padrão após Wall Splash provocado por Drive Impact perto da parede.</div>
+        </div>
+      </div>
+
+      <!-- SUB: STUN -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Stun<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+ 
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Stun — Conversão Máxima</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (Hold)</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M (2x)</span> <span class="cancel-xx">xx</span> ↓↘→ + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> KS Break <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-M">M</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3330</span>
+          </div>
+          <div class="combo-note">Gera safe jump. Conversão padrão sempre que stunar o oponente após um Drive Impact.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Stun — Variante com Hold</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DI">DI</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (Hold)</span>, ↓ + <span class="btn-H">H</span>, <span class="btn-H">H</span> <span class="cancel-xx">xx</span> KS Break, → + <span class="btn-SP">SP</span>, ↓↙← + <span class="btn-L">L</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3072</span>
+          </div>
+          <div class="combo-note">Também gera safe jump. Segure o input do Assist 1 conforme indicado para manter o timing correto do combo de stun.</div>
+        </div>
+      </div>
+
+      <!-- SUB: PUNISH COUNTER -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Punish Counter<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+        
+         <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">PC — Drive Rush → Kill Switch Break</span>
+          <div class="combo-row">
+            <code class="combo-inputs">↓ + <span class="btn-SP">SP</span>, <span class="btn-DR">DR</span> <span class="neutral-symbol">N</span> + <span class="btn-M">M</span> <span class="cancel-xx">xx</span> KS Break <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:#1e7cc4;color:#1e7cc4;">2246</span>
+          </div>
+          <div class="combo-note">Anti-air ou Uppercut em Punish Counter cancelado em Drive Rush, fechando em Kill Switch Break.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">PC — Conversão Máxima</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3510</span>
+          </div>
+          <div class="combo-note">Uma das melhores conversões de Punish Counter do Ed Modern.</div>
+        </div>
+        
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Kill Rush → +9 → Conversão</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span>, Kill Rush</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2800</span>
+          </div>
+          <div class="combo-note">Ed fica <span style="color:#22c55e">+9f</span> depois do Kill Rush — dentro da distância para Throw, Strike ou Shimmy.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">PC — Com Safe Jump</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> → + <span class="btn-SP">SP</span><span class="cancel-xx">xx</span> ↓↙← + <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3500</span>
+          </div>
+          <div class="combo-note">Versão ligeiramente menos dano, mas garante safe jump no final.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-good">✔ Bom Saber</span>
+          <span class="combo-tag" style="color:#a78bfa;">Conversão com Safe Jump</span>
+          <div class="combo-row">
+              <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> → + <span class="btn-SP">SP</span><span class="cancel-xx">xx</span> ↓↙← + <span class="btn-L">L</span></code>
+              <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2960</span>
+          </div>
+
+          <div class="combo-note">
+          <span class="combo-tag" style="color:#a78bfa;">Variante — Whiff Controlado</span>
+          <div class="combo-row">
+              <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> → + <span class="btn-SP">SP</span><span class="cancel-xx">xx</span> ↓↙← + <span class="btn-L">L</span> (whiff), Throw</code>
+              <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3920</span>
+          </div>
+          <div class="combo-note">Fica <span style="color:#22c55e">+4f</span> depois do whiff controlado — boa opção de oki extra quando sobra tempo na sequência.
+            <br>Quase 40% de dano e ainda garante safe jump — excelente custo-benefício.</div>
+          </div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">Variante — 2 Dashes</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> → + <span class="btn-H">H</span> (dash 2x)</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2720</span>
+          </div>
+          <div class="combo-note">Se der 2 dashes na sequência, Ed fica <span style="color:#22c55e">+7f</span> — ajuste fino de oki dependendo da distância da parede.</div>
+        </div>
+
+         <div class="combo">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">Punish Counter — Conversão</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-M">M</span> <span class="cancel-xx">xx</span> <span class="btn-DR">DR</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span>, Kill Rush (shimmy)</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">2568</span>
+          </div>
+          
+          <div class="combo-note"> 
+            <span class="combo-tag" style="color:#a78bfa;">Punish Counter → Cash Out Completo → Safe Jump Garantido</span>
+            <div class="combo-row">
+              <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-M">M</span> <span class="cancel-xx">xx</span> <span class="btn-DR">DR</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-M">M</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span>, Kill Rush (shimmy) <span class="cancel-xx">xx</span> <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, ↓↘→ + <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> → + <span class="btn-SP">SP</span><span class="cancel-xx">xx</span> ↓↙← + <span class="btn-L">L</span></code>
+              <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.6);color:#ff6666;">5536</span>
+            </div>
+            <div class="combo-note">Ao confirmar um Punish Counter, essa extensão de Auto Pesado causa 2568 de dano e ainda oferece excelente corner carry. Se o Kill Rush final resultar em um shimmy, é possível continuar com a rota abaixo para maximizar o dano, encerrando a sequência com safe jump garantido.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUB: SUPER LEVEL 1 -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Super level 1<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+ 
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Finalização em Level 1</span>
+          <div class="combo-row">
+              <code class="combo-inputs"><span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span> <span class="cancel-xx">xx</span> <span class="btn-DR">DR</span> <span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, ↓ + <span class="btn-H">H</span>, <span class="btn-H">H</span>, KS Chaser <span class="cancel-xx">xx</span> SA1</code>
+              <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3241</span>
+          </div>
+          <div class="combo-note">Ótimo dano finalizando em Level 1 — boa rota de cash-out quando não há barra para SA3.</div>
+        </div>
+
+
+      </div>
+
+      <!-- SUB: SUPER LEVEL 2 -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Super level 2<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+ 
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Conversão para SA2</span>
+          <div class="combo-row">
+            <code class="combo-inputs">← + <span class="btn-AUTO">AUTO</span> + <span class="btn-SP">SP</span>, SA2 (hold back), DP <span class="btn-H">H</span>, → + <span class="btn-H">H</span>, DP <span class="btn-H">H</span></code>
+            <span class="combo-dmg-badge" style="border-color:rgba(124,58,237,0.5);color:#a78bfa;">3644</span>
+          </div>
+          <div class="combo-note">Rota principal de cash-out em SA2 — boa opção quando não há barra suficiente para Level 3.</div>
+        </div>
+      </div>
+
+      <!-- SUB: SUPER LEVEL 3 -->
+      <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+        <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Super Level 3<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+ 
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Conversão Máxima para SA3</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span><span class="cancel-xx">xx</span><span class="btn-DR">DR</span> <span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H</span><span class="cancel-xx">xx</span><span class="btn-DR">DR</span> <span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span> <span class="cancel-xx">xx</span> SA3</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.6);color:#ff6666;">6248</span>
+          </div>
+          <div class="combo-note">Conversão de maior dano do guia. Usa dois Drive Rushes para emendar pesados antes de fechar com Assist 1 cancelado em SA3 — reserve para punir grandes erros ou fechar o round.</div>
+        </div>
+
+        <div class="combo">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Versão com SA3 — Máximo Dano (input Modern)</span>
+          <div class="combo-row">
+            <code class="combo-inputs"><span class="btn-DR">DR</span> <span class="neutral-symbol">N</span> + <span class="btn-H">H</span>, <span class="btn-AUTO">AUTO</span> + <span class="btn-H">H (4x)</span> <span class="cancel-xx">xx</span> SA3</code>
+            <span class="combo-dmg-badge" style="border-color:rgba(255,51,51,0.5);color:var(--red-light);">~5500</span>
+          </div>
+          <div class="combo-note">Com Drive Rush Cancel (DR + HP, HP → SA3): <strong>~5500 de dano</strong> gastando 6 barras. Muito simples de executar — só adiciona Drive Rush e SA3 no final. Input exclusivo do controle Modern.</div>
+        </div>
+
+        <div class="tip" style="margin-top:16px;">
+          <strong>Regra de ouro dos confirms:</strong> Psycho Flicker (ou Spark) no hit dá tempo suficiente para ver o acerto e DEPOIS cancelar em Super. No Modern, o atalho de Special ativa mais rápido — treine o timing para não mash Super às cegas e gastar sem confirmar.
+        </div>
+  </section>
+
+  <div class="footer">
+    <div class="footer-title">Ed BnB Guide — Controle Modern</div>
+    <div class="footer-sub">Baseado em Frame Data Capcom · Patch Year 4/Season 4 (08.03.2026) · Controle Modern · Street Fighter 6<br>Referência de gameplay: Tachikawa (Modern Ed de alto nível)</div>
+  </div>
+
+</div>
+</body>
+</html>
