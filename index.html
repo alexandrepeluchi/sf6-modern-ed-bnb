@@ -175,6 +175,9 @@
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 18px; }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px 20px; transition: border-color 0.2s; }
   .card:hover { border-color: var(--blue-primary); }
+  .card.L:hover { border-color: #1e7cc4; }
+  .card.M:hover { border-color: #fbbf24; }
+  .card.H:hover { border-color: #ff6666; }
   .card-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 5px; display: block; }
   .card-title { font-family: 'Black Han Sans', sans-serif; font-size: 15px; color: #fff; margin-bottom: 7px; }
   .card p { font-size: 13px; color: var(--muted); }
@@ -289,6 +292,9 @@
   .flicker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
   .flicker-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 18px; text-align: center; transition: border-color 0.2s; }
   .flicker-card:hover { border-color: var(--blue-primary); }
+  .flicker-card.L:hover { border-color: #1e7cc4; }
+  .flicker-card.M:hover { border-color: #fbbf24; }
+  .flicker-card.H:hover { border-color: #ff6666; }
   .flicker-num { font-family: 'Black Han Sans', sans-serif; font-size: 30px; margin-bottom: 6px; }
   .flicker-num.L { color: #1e7cc4; }
   .flicker-num.M { color: #ffaa33; }
@@ -432,6 +438,59 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+  <!-- SUMÁRIO -->
+<div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+  <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Sumário<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+  <div class="card-grid">
+    <a href="#patch-y4s4" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">Y4/S4</span>
+      <div class="card-title">Patch Notes</div>
+      <p>Ajustes oficiais da Capcom para Ed no patch 08.03.2026.</p>
+    </a>
+    <a href="#visao" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">01</span>
+      <div class="card-title">Ed no Controle Modern</div>
+      <p>Visão geral de como o kit de Ed se adapta ao Modern.</p>
+    </a>
+    <a href="#normais" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">02</span>
+      <div class="card-title">Normal Moves</div>
+      <p>Frame data completa dos normals disponíveis no Modern.</p>
+    </a>
+    <a href="#uniques" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">03</span>
+      <div class="card-title">Unique Attacks</div>
+      <p>Golpes exclusivos e Combinations de botão único.</p>
+    </a>
+    <a href="#specials" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">04</span>
+      <div class="card-title">Specials no Controle Modern</div>
+      <p>Atalhos de Special, Psycho Flicker, Blitz, Uppercut, Spark e Super Arts.</p>
+    </a>
+    <a href="#botoes" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">06</span>
+      <div class="card-title">Botões Chave — Modern</div>
+      <p>Os botões essenciais de Ed e para que serve cada um.</p>
+    </a>
+    <a href="#gameplan" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">07</span>
+      <div class="card-title">Game Plan</div>
+      <p>Identidade, pokes principais, mixup de throw, Spark e Flicker.</p>
+    </a>
+    <a href="#Basics" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">08</span>
+      <div class="card-title">Basics</div>
+      <p>Target Combo, anti-aéreo, oki e situações fundamentais.</p>
+    </a>
+    <a href="#combos" class="card" style="text-decoration:none;color:inherit;display:block;">
+      <span class="card-label">09</span>
+      <div class="card-title">Combos BnB — Modern</div>
+      <p>Rotas de combo bread and butter prontas para treinar.</p>
+    </a>
   </div>
 </div>
 
@@ -821,22 +880,22 @@
     <h3>Psycho Flicker — O Coração do Jogo</h3>
     <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">No Modern, o atalho dá o L Flicker automaticamente. Para M e H Flicker, é necessário input manual (QCF + MK ou HK). Vale a pena aprender — especialmente o M Flicker para controle de espaço.</p>
     <div class="flicker-grid">
-      <div class="flicker-card">
+      <div class="flicker-card L">
         <div class="flicker-num L">L</div>
         <div class="flicker-name">L Psycho Flicker</div>
-        <span class="flicker-data">↓ + <span class="btn-SP">SP</span> ou QCF+LK · 16f<br><span style="color:#22c55e">+1f hit</span> · <span style="color:#ff6666">-6f block</span></span>
+        <span class="flicker-data">↓ + <span class="btn-SP">SP</span> ou ↓↘→ + <span class="btn-L">L</span> <br><span style="color:var(--blue-light)">16f</span> <br><span style="color:#22c55e">+1f hit</span> · <span style="color:#ff6666">-6f block</span></span>
         <p>Curto alcance, rápido. Versão mais usada no atalho. Carregado (30f+) lança o oponente. Principal ender de combo. -20% dano no atalho.</p>
       </div>
-      <div class="flicker-card">
+      <div class="flicker-card M">
         <div class="flicker-num M">M</div>
         <div class="flicker-name">M Psycho Flicker</div>
-        <span class="flicker-data">QCF + MK (manual) · 20f<br><span style="color:#22c55e">+3f hit</span> · <span style="color:#ff6666">-6f block</span></span>
+        <span class="flicker-data">↓↘→ + <span class="btn-M">M</span> <br><span style="color:var(--blue-light)">20f</span> <br><span style="color:#22c55e">+3f hit</span> · <span style="color:#ff6666">-6f block</span></span>
         <p>Médio alcance. Requer input manual. Carregado causa crumple (45f). Ferramenta de controle de espaço a distâncias médias.</p>
       </div>
-      <div class="flicker-card">
+      <div class="flicker-card H">
         <div class="flicker-num H">H</div>
         <div class="flicker-name">H Psycho Flicker</div>
-        <span class="flicker-data">QCF + HK (manual) · 17f<br><span style="color:#22c55e">0f hit</span> · <span style="color:#ff6666">-10f block</span></span>
+        <span class="flicker-data">↓↘→ + <span class="btn-H">H</span> <br><span style="color:var(--blue-light)">17f</span> <br><span style="color:#22c55e">0f hit</span> · <span style="color:#ff6666">-10f block</span></span>
         <p>Longo alcance. Anti-aéreo de flicker — use quando oponente pular os outros Flickeres. Não use em grounded.</p>
       </div>
     </div>
@@ -1075,8 +1134,199 @@
     </div>
   </section>
 
-  <section id="Basics">
+  <!-- 07 GAME PLAN -->
+  <section id="gameplan">
     <div class="section-label">07</div>
+    <h2>Game Plan</h2>
+    <p>Antes de decorar combos e setups, é preciso entender <strong>como Ed pensa</strong> a partida. O game plan abaixo é o núcleo do personagem — os resets, setups e mixups avançados só funcionam se essa base estiver sólida. Sem ela, tudo desmorona.</p>
+    <p>A identidade de Ed é a de um <strong>pressure zoner explosivo</strong>: ele controla o meio da tela com pokes de alcance anormal e transforma cada acerto em dano e vantagem de frame reais — algo que a maioria dos personagens de poke puro não oferece.</p>
+
+    <div class="alert-modern">
+      <h4>Ed vs. Dhalsim — A Mesma Ideia, Resultado Diferente</h4>
+      <p>Ambos dominam o neutro pelo alcance anormal dos seus normals e forçam o oponente a jogar sob a ameaça constante de ser atingido de longe. Mas a semelhança para por aí: <strong>Dhalsim tem mais alcance</strong> que Ed, porém raramente converte em combo — apanhar dele é chato, não perigoso. <strong>Ed sacrifica um pouco desse alcance</strong> em troca de recompensa real: quase todos os seus pokes puxam para um target combo ou special cancel com dano e frame advantage de verdade. Um erro contra Ed não é irritante — é uma sentença de morte.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-label">Alcance — Dhalsim</div>
+      <div class="stat-bar"><div class="stat-fill purple" style="width:92%;"></div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-label">Alcance — Ed</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:78%;"></div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-label">Recompensa — Dhalsim</div>
+      <div class="stat-bar"><div class="stat-fill bad" style="width:15%;"></div></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-label">Recompensa — Ed</div>
+      <div class="stat-bar"><div class="stat-fill danger" style="width:88%;"></div></div>
+    </div>
+
+    <!-- SUB: POKES PRINCIPAIS -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Pokes Principais<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <p>Os dois botões que você deve pensar <strong>em toda respiração da partida</strong> são <span class="neutral-symbol">N</span> + <span class="btn-M">M</span> e ↓ + <span class="btn-H">H</span>. A intuição padrão de Street Fighter manda cancelar esses normals em special toda vez que conectam. Contra Ed, isso é um erro.</p>
+
+      <div class="warning">
+        <strong><span class="neutral-symbol">N</span> + <span class="btn-M">M</span> é <span style="color:#ff6666">-5f</span> e ↓ + <span class="btn-H">H</span> é <span style="color:#ff6666">-6f</span> on block.</strong> Cancelar cegamente em Flicker toda vez que o golpe conecta te deixa preso num loop de +1f no meio da tela — nada acontece — enquanto ainda corre o risco de tomar Drive Impact no gap do cancel.
+      </div>
+
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-must">⭐ Obrigatório</span>
+          <span class="combo-tag" style="color:#fbbf24;">Hit-Confirm no Target Combo (a forma correta)</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs">↓ + <span class="btn-H">H</span> ▶ <span class="btn-H">H</span> (confirmado)</code>
+        </div>
+        <div class="combo-note">Se bloqueado, <strong>não faça nada</strong> — zero risco de Drive Impact. Se acertar, feche o Target Combo: knockdown com frames suficientes para o meaty throw. Essa é a diferença entre "nada acontece" e "você ganhou a rodada".<br><br><strong>Prioridade de confirmação:</strong> ↓ + <span class="btn-H">H</span> é bem mais fácil de confirmar que <span class="neutral-symbol">N</span> + <span class="btn-M">M</span>. Treine o crouching primeiro. De longe, o segundo hit de <span class="neutral-symbol">N</span> + <span class="btn-M">M</span> fica <span style="color:#ff6666">-6f</span> on block, mas a maioria dos personagens não tem alcance pra punir de tão longe.</div>
+      </div>
+
+      <div class="combo">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span class="combo-priority prio-bonus">★ Situacional</span>
+          <span class="combo-tag" style="color:#ff6666;">Cancelar em Special (a forma "padrão")</span>
+        </div>
+        <div class="combo-row">
+          <code class="combo-inputs"><span class="neutral-symbol">N</span> + <span class="btn-M">M</span> <span class="cancel-xx">xx</span> ↓ + <span class="btn-SP">SP</span></code>
+        </div>
+        <div class="combo-note">On hit: você fica só <strong>+1f</strong>, de volta ao mid-screen, sem mixup nenhum. On block: sempre existe um gap — <strong>risco real de Drive Impact</strong>, mesmo tentando blefar com o fireball atrás.</div>
+      </div>
+
+      <div class="tip">
+        <strong>Confirmar em Drive Rush:</strong> em vez do Target Combo, dá pra confirmar direto em Drive Rush — janela de confirmação mais apertada, ainda assim mais fácil no ↓ + <span class="btn-H">H</span>. Reserve para quando o hit-confirm já estiver automático.
+      </div>
+      <div class="info">
+        <strong>Transforme o gap em arma:</strong> depois que o oponente aprender a não pressionar contra seus pokes bloqueados, ele vai começar a tentar atacar no gap. É aí que o cancel em Flicker deixa de ser fraqueza e vira ferramenta: ele dá alcance extra pra pegar quem tenta reagir, criando pressão via zoning — não só dano.
+      </div>
+    </div>
+
+    <!-- SUB: BOTÕES DE PAINEL — MODERN -->
+    <div class="card-grid" style="margin-top:14px; text-align:center;">
+      <div class="card L">
+        <div class="flicker-num L">L</div>
+        <span class="card-label" style="font-size:smaller;">Botão de Pânico - 6F</span>
+        <div style="margin:5%;"><span class="neutral-symbol">N</span> + <span class="btn-L">L</span></div>
+        <p>O normal mais rápido de Ed fora do Auto Combo. 6f de startup, <span style="color:#22c55e">+3f</span> on hit / <span style="color:#ff6666">-3f</span> on block — a checagem mais barata quando o oponente encosta demais. Também é o início da Flicker Combination (<span class="btn-L">L</span> ▶ <span class="btn-L">L</span> ▶ <span class="btn-L">L</span>), se conectar, encadeie os dois hits seguintes para converter dano e manter viva a ameaça do terceiro light.</p>
+      </div>
+      <div class="card M">
+        <div class="flicker-num M">M</div>
+        <span class="card-label" style="font-size:smaller;">Botão Reacionário — 7f</span>
+        <div style="margin:5%;"><span class="neutral-symbol">N</span> + <span class="btn-M">M</span></div>
+        <p>Quando o oponente anda para frente e o footsie muda de faixa, esse é o botão reacionário do Modern. Acessado pelo Auto M, 7f de startup e <span style="color:#22c55e">+6f</span> on hit — vence a maioria dos pokes que o oponente tenta no close range. Complemente com cancel em Flicker ou back sway para reabrir distância.</p>
+      </div>
+      <div class="card H">
+        <div class="flicker-num H">H</div>
+        <span class="card-label" style="font-size:smaller;">Alcance Absurdo</span>
+        <div style="margin:5%;"><span >↓ + <span class="btn-H">H</span></span></div>
+        <p>O maior alcance dos normals de Ed e um dos dois pokes principais do game plan. 12f de startup, <span style="color:#ff6666">-6f</span> on block — mas hit-confirmável no Target Combo para knockdown com throw mixup. Não cancele às cegas em special; confirme.</p>
+      </div>
+    </div>
+
+    <!-- SUB: PSYCHO SPARK -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Psycho Spark — Transformando Espaço em Medo<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <p>Quando o oponente cria muito espaço pra fugir do seu poke game, é hora de puxar o fireball. Ele é <strong>lento de propósito</strong> — o suficiente para você Drive Rush atrás dele e chegar apertando <span class="btn-H">H</span>.</p>
+
+      <div class="combo">
+        <span class="combo-priority prio-must">⭐ Obrigatório</span>
+        <span class="combo-tag" style="color:#fbbf24;">Fireball → Slide → Mixup</span>
+        <div class="combo-note">Standing HP tem uma propriedade pouco conhecida: segurando o input, Ed <strong>desliza para frente</strong> em vez de atacar no lugar. Puxe o fireball, Drive Rush, segure o <span class="btn-H">H</span> e deslize pra dentro do mixup.
+        <br><br><strong>Se o oponente ler e der Drive Impact:</strong> back sway na hora certa e você ganha de graça.
+        <br><strong>Se ele respeitar e não fizer nada:</strong> finalize o Snatcher — você termina <span style="color:#22c55e">+4f</span> e escolhe entre pressão de light ou back dash. De qualquer forma, o oponente come um mixup.</div>
+      </div>
+
+      <div class="warning">
+        <strong>Counterplay do oponente — Perfect Parry:</strong> se ele conseguir parry perfeito no fireball no meio do plano padrão, você é interrompido e punido. Contra isso, pule o Standing HP e vá direto pro Flicker — ele cancela seu momentum para frente. Se não tiver certeza, carregue o Flicker imediatamente em vez de arriscar o slide.
+      </div>
+    </div>
+
+    <!-- SUB: PSYCHO FLICKER -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Psycho Flicker + Back Sway — Controlando o Tempo<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+
+      <p>O Psycho Flicker é a versão "gigabuffada" dos pokes de Ed — alcance gigantesco, dano baixo, sem cancel. É a ferramenta que estabelece o <strong>tempo</strong> da partida.</p>
+
+      <div class="tip">
+        <strong>Spam com propósito:</strong> jogue o Flicker fora repetidamente de longe. Isso empurra o oponente a pensar "esse cara não sabe que dá pra pular ou dar Drive Impact nisso?" — e ele vai tentar. Quando ele tentar, o jogo vira previsível e simples, e essa simplicidade trabalha a seu favor.
+      </div>
+
+      <div class="combo">
+        <span class="combo-priority prio-good">✔ Bom Saber</span>
+        <span class="combo-tag" style="color:#a78bfa;">Back Sway como Isca</span>
+        <div class="combo-note">Do alcance certo, um Drive Impact ou pulo do oponente contra o Flicker whiffa completamente contra o vazio. As pessoas não reagem no timing do input — elas reagem ao <strong>carregamento visual da mão</strong>. Aproveite: back sway durante essa janela e você baita o DI, destruindo quem tentar.</div>
+      </div>
+
+      <div class="info">
+        <strong>Heavy Flicker pós-back sway:</strong> depois de qualquer back sway (ou mesmo parado, uma vez que você já tem respeito), o oponente demora pra processar a situação — ninguém reage imediatamente. Segure o Heavy Flicker nesse momento; se ele pular (a reação mais comum depois de um back sway), você anti-aireia de graça.
+      </div>
+
+      <div class="combo">
+        <span class="combo-priority prio-good">✔ Bom Saber</span>
+        <span class="combo-tag" style="color:#a78bfa;">Drive Rush contra o Flicker</span>
+        <div class="combo-note">Muitos oponentes tentam Drive Rush no Flicker esquecendo do counter-hit — e acabam derrubados. Aproveite o knockdown pra setar seu fireball e vencer de graça.</div>
+      </div>
+    </div>
+
+    
+    <!-- SUB: THROW MIXUP -->
+    <div style="margin-top:24px;padding:24px 28px;background:linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(0,0,0,0) 100%);border:1px solid rgba(124,58,237,0.28);border-radius:6px;">
+      <div style="font-family:'Black Han Sans',sans-serif;font-size:10px;letter-spacing:5px;color:#a78bfa;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;">Mixup de Throw — O Que Fazer Depois do Confirm<span style="flex:1;height:1px;background:rgba(124,58,237,0.25);display:block;"></span></div>
+      <p style="margin-bottom:18px;">O mixup de Ed é propositalmente <strong>vanilla</strong>: throw e lights. Não espere reset elaborado — o jogo dele é ganhar através da ameaça repetida do agarrão.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Meaty Throw como padrão</div>
+            <div class="step-desc">Depois de qualquer combo ou knockdown, o meaty throw é a opção default. Se o oponente não fizer nada, ele simplesmente é agarrado — e isso já é o suficiente pra começar a forçar decisões.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Uma técnica anti-throw fixa</div>
+            <div class="step-desc">
+              <strong>Back dash</strong> é a opção mais consistente: vence <strong>mash tech</strong> e <strong>delay tech</strong>, as duas respostas defensivas mais comuns. Contra quem abusa de <strong>delay tech</strong>, um <strong>neutral jump</strong> (cuidado com anti-air) ou um botão com pequeno delay também funcionam.
+              <br>
+              <strong>Timing:</strong> use logo após um <strong>Kill Rush</strong> ou um <strong>OD Flicker (hold)</strong>. Nessas situações, Ed já está em alcance de throw, permitindo punir o tech do oponente sem perder pressão.
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Tick throw com jab</div>
+            <div class="step-desc">Ponto em branco, um <span class="btn-L">L</span> em throw é um tick throw simples e sempre disponível — já que Ed tem poucas oportunidades reais de setup de agarrão. Cuidado: se o oponente andar para trás durante o jab, ele evade o throw. Encadeie outro jab para fechar essa brecha.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">A ameaça do terceiro light</div>
+            <div class="step-desc">Ponto em branco você só tem 3 lights antes do oponente parar de levar hitstun. No terceiro, você fica <strong>-1f</strong> — não é mais seu turno, e continuar exige um special cancel arriscado. Mas enquanto o terceiro light não sai, o oponente sempre corre o risco de tomar counter hit nele — e isso, por si só, já é pressão.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-title">Crouching M punch contra o walk-back</div>
+            <div class="step-desc">Como o oponente não quer apertar nada entre o segundo e o terceiro light, a reação mais comum é andar para trás — e aí o throw deixa de ser ameaça. Use a crouching medium punch pra travar o walk-back sem gastar Drive Rush. Uma vez que ele respeita o segundo/terceiro light e a medium punch, ele fica parado o suficiente pra você simplesmente andar e agarrar de graça.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip" style="margin-top:24px;">
+      <strong>Resumo do Game Plan:</strong> poke o jogo inteiro com <span class="neutral-symbol">N</span> + <span class="btn-M">M</span> e ↓ + <span class="btn-H">H</span> confirmando (nunca cancelando às cegas). Se o oponente andar demais para frente, <span class="neutral-symbol">N</span> + <span class="btn-L">L</span> (6f) checa rápido e barato, e o próprio <span class="neutral-symbol">N</span> + <span class="btn-M">M</span> (7f) funciona como reação um pouco mais forte pra reabrir a distância. Se ele fugir, Psycho Spark + Drive Rush pra dentro do mixup. Se a distância for grande, spam de Flicker complementado por back sway — se ele der DI ou pular, você não perde nada e ainda pode vencer de graça.
+    </div>
+  </section>
+
+  <section id="Basics">
+    <div class="section-label">08</div>
     <h2>Basics</h2>
     <p>Antes de aprender os combos, domine as ferramentas fundamentais do Ed. Esta seção reúne os principais pokes, opções de anti-aéreo, controle de espaço, pressão e situações de oki que formam a base do personagem em Modern.</p>
     <p>O plano de jogo do Ed gira em torno de controlar a média distância com bons normals, punir saltos com anti-aéreos consistentes e manter a pressão após knockdowns. Entender quando disputar espaço, recuar ou continuar a ofensiva é mais importante do que memorizar combos.</p>
@@ -1384,9 +1634,9 @@
       </div>
   </section>
 
-  <!-- 08 COMBOS BnB MODERN -->
+  <!-- 09 COMBOS BnB MODERN -->
   <section id="combos">
-    <div class="section-label">08</div>
+    <div class="section-label">09</div>
     <h2>Combos BnB — Modern</h2>
     <p>Seção totalmente reconstruída a partir de footage e anotações de alto nível em Modern. Os combos mostram as rotas de cancelamento, enders, frame advantage e situações de oki mais importantes do Ed Modern.</p>
     <p>Os Auto Combos são o diferencial do Modern Ed. São sequências apertando o mesmo botão repetidamente — o jogo executa os normals e specials automaticamente. Ed tem excelentes Auto Combos com boas opções de oki.</p>
